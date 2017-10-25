@@ -1,3 +1,3 @@
-# PossaBull
+# PossiBull
 
 Stock market trading simulation 
