@@ -1,3 +1,3 @@
-# PossiBull
+# POSSIBULL
 
-Stock market trading simulation 
+Stock market protfolio simulation
