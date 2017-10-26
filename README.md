@@ -1,3 +1,3 @@
-# Money Tree
+# POSSIBULL
 
-Stock picking app
+Stock market protfolio simulation
