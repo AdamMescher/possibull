@@ -1,0 +1,56 @@
+.login-container h1 {
+  text-align: center;
+  margin: 0;
+  font-size: 72px;
+  color: $logo-primary;
+}
+
+.login-form {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container input::placeholder,
+.login-container button {
+  text-transform: uppercase;
+}
+
+.login-form input {
+  border: black 2px solid;
+}
+
+.login-form input,
+.login-form button {
+  font-size: 32px;
+  border-radius: 5px;
+}
+
+.input-name,
+.input-email,
+.input-password,
+.input-verify-password,
+.login-form button {
+  padding-left: 10px;
+  height: 50px;
+  width: 400px;
+  border: none;
+}
+
+.login-button,
+.signup-button {
+  height: 50px;
+  width: 400px;
+  color: white;
+  background-color: $logo-primary;
+}
+
+.input-email,
+.input-password,
+.input-verify-password,
+.login-form button {
+  margin-top: 25px;
+}
