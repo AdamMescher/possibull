@@ -26,3 +26,6 @@ src/**/*.css
 
 #firebase api key
 fire.js
+
+#quandl api key
+quandlApiKey.js
