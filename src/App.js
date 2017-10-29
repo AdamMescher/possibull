@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-import fire from './fire';
+import fire from './utils/fire';
 
-class App extends Component {
+export default class App extends Component {
 
-  }
   render() {
     return (
       <div>APP</div>
     );
   }
 }
-
-export default App;
