@@ -24,8 +24,9 @@ yarn-error.log*
 
 src/**/*.css
 
-#firebase api key
+#firebase
 fire.js
+firebaseDatabaseSecret.js
 
 #quandl api key
 quandlApiKey.js

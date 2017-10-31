@@ -7,8 +7,13 @@ const mapStateToProps = store => ({
   currentUserID: store.currentUserID
 });
 
-const mapDispatchToProps = dispatch => ({ 
-
+const mapDispatchToProps = dispatch => ({
+  setCurrentUserID: (userID) => {
+    dispatch(currentUserID(userID))
+  }
 });
 
-export default connect(mapStateToProps, undefined)(Login);
+export default connect(
+  mapStateToProps, 
+  mapDispatchToProps
+)(Login);
