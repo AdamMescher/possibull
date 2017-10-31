@@ -1,19 +1,29 @@
 import React from 'react';
-import {
-  fetchStockSymbols, 
-  fetchStockQuote
-} from '../utils/fetchHelpers';
+import { grabUserPortfolio, grab } from '../containers/PortfolioContainer';
+import Header from './Header';
 
-const Portfolio = () => {
+// import {
+//   fetchStockSymbols, 
+//   fetchStockQuote
+// } from '../utils/fetchHelpers';
 
-  const allStockSymbols = fetchStockSymbols();
-  const testAppleStockCall = fetchStockQuote('AAPL');
+const Portfolio = (props) => {
+  props.grabUserPortfolio(props.currentUserID)
+  props.grabStockSymbolsArray();
   
-  return(
-    <div>
-      HI
+  // props.grabStockSymbols();
+
+  return (
+    <div className='portfolio-container'>
+      <Header arrayOfStockSymbols={props.stockSymbolsArray}/>
+      <section className='portfolio-main-container'>
+        <h3>Portfolio</h3>
+        <p>{`USER ID: ${props.currentUserID}`}</p>
+        <p>{`USER PORTFOLIO: ${props.userPortfolio}`}</p>
+        <p>{`USER NET WORTH: ${props.userNetWorth}`}</p>
+      </section>
     </div>
-  )
-}
+  );
+};
 
 export default Portfolio;
