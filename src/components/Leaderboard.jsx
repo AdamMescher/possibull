@@ -7,12 +7,10 @@ const Leaderboard = (props) => {
     <div className='leaderboard-container'>
       <Header 
         history={props.history}
-        setSearchTerm={props.setSearchTerm.bind(this)}
-        />
+        setSearchTerm={props.setSearchTerm.bind(this)} />
       <section>
       <h1>LEADERBOARD</h1>
       <p>this is where the scores will go...eventually</p>
-
       </section>
     </div>
   )
