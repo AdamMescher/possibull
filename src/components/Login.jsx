@@ -60,7 +60,6 @@ export default class Login extends Component {
         this.props.setCurrentUserID(user.uid);
         this.props.fetchUserData(user.uid);
         this.props.history.push(`/portfolio/`);
-
       }
     });
   };

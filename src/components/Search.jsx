@@ -17,9 +17,12 @@ export default class Search extends Component {
     })
   }
 
-  handleSearchButtonClick = () => {
+  handleSearchButtonClick = (searchTerm) => {
     const filtered = symbols.filter(stock => {
-      return stock.symbol.toLowerCase().includes(this.state.search.toLowerCase()) || stock.name.toLowerCase().includes(this.state.search.toLowerCase())
+      return stock.symbol.toLowerCase().includes(this.state.search.toLowerCase())   || 
+             stock.name.toLowerCase().includes(this.state.search.toLowerCase())     || 
+             stock.symbol.toLowerCase().startsWith(this.state.search.toLowerCase()) ||
+             stock.name.toLowerCase().startsWith(this.state.search.toLowerCase())
     })
     if (filtered.length === 1) {
       console.log(filtered[0].symbol);
@@ -42,7 +45,7 @@ export default class Search extends Component {
 
   handleKeyPress(event) {
     if (event.key === 'Enter') {
-      console.log('pressed enter');
+      
     }
   }
 

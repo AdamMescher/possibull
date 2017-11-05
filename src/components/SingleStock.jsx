@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import iexURL from '../utils/iexURL';
-import { fetchStockQuote } from '../utils/fetchHelpers';
 import fire from 'firebase';
 
 class SingleStock extends Component {
@@ -12,7 +11,11 @@ class SingleStock extends Component {
     }
   }
 
-  generateStockPurchaseData = (stock) => ({
+  componentDidMount(){
+    this.props.fetchStockQuote( this.props.stockSymbolToDisplay )
+  }
+
+  generateStockPurchaseData = stock => ({
     symbol: stock.symbol,
     price: stock.price,
     numberOfShares: this.state.numberOfShares,
@@ -35,7 +38,7 @@ class SingleStock extends Component {
     return numberOwned >= attemptedSale
   }
 
-  sendUserObjectToFirebase = (userObject) => {
+  sendUserObjectToFirebase = userObject => {
     fire.database().ref(`users/${this.props.currentUserID}`).set({
       userObject
     })
@@ -82,7 +85,9 @@ class SingleStock extends Component {
           ...this.props.userDataObject.portfolio,
           [this.props.stockDataObjectToDisplay.symbol]: {
             symbol: this.props.stockDataObjectToDisplay.symbol,
-            numberOfShares: parseInt(this.state.numberOfShares) + parseInt(this.props.userDataObject.portfolio[this.props.stockDataObjectToDisplay.symbol].numberOfShares)
+            numberOfShares: 
+              parseInt(this.state.numberOfShares) 
+              + parseInt(this.props.userDataObject.portfolio[this.props.stockDataObjectToDisplay.symbol].numberOfShares)
           }
         },
         netWorth: (this.props.userDataObject.netWorth - transactionData.cost.toFixed(2))
@@ -95,7 +100,9 @@ class SingleStock extends Component {
           [this.props.stockDataObjectToDisplay.symbol]:
           {
             symbol: this.props.stockDataObjectToDisplay.symbol,
-            numberOfShares: parseInt(transactionData.numberOfShares) + parseInt(this.props.userDataObject.portfolio[this.props.stockDataObjectToDisplay.symbol].numberOfShares)
+            numberOfShares: 
+              parseInt(transactionData.numberOfShares) 
+              + parseInt(this.props.userDataObject.portfolio[this.props.stockDataObjectToDisplay.symbol].numberOfShares)
           }
         },
         netWorth: (this.props.userDataObject.netWorth - transactionData.cost.toFixed(2))
@@ -114,7 +121,9 @@ class SingleStock extends Component {
           ...this.props.userDataObject.portfolio,
           [this.props.stockDataObjectToDisplay.symbol]: {
             symbol: this.props.stockDataObjectToDisplay.symbol,
-            numberOfShares: parseInt(this.props.userDataObject.portfolio[this.props.stockDataObjectToDisplay.symbol].numberOfShares) - parseInt(this.state.numberOfShares)
+            numberOfShares: 
+              parseInt(this.props.userDataObject.portfolio[this.props.stockDataObjectToDisplay.symbol].numberOfShares) 
+              - parseInt(this.state.numberOfShares)
           }
         },
         netWorth: (this.props.userDataObject.netWorth + transactionData.cost).toFixed(2)
@@ -158,18 +167,19 @@ class SingleStock extends Component {
   }
 
   handleBuyButtonClick = () => {
-    !this.props.userDataObject.portfolio || this.props.userDataObject.portfolio[this.props.stockDataObjectToDisplay.symbol]
+    !this.props.userDataObject.portfolio || 
+     this.props.userDataObject.portfolio[this.props.stockDataObjectToDisplay.symbol]
       ? this.createNewEntryInPortfolio(
-          this.generateStockPurchaseData(this.props.stockDataObjectToDisplay)
+          this.generateStockPurchaseData( this.props.stockDataObjectToDisplay )
         )
       : this.createNewEntryInPortfolio(
-          this.generateStockPurchaseData(this.props.stockDataObjectToDisplay)
-      )
+          this.generateStockPurchaseData( this.props.stockDataObjectToDisplay )
+        )
   }
 
   handleSellButtonClick = () => {
     this.sellUpdateExistingEntryInPortfolio(
-      this.generateStockPurchaseData(this.props.stockDataObjectToDisplay)
+      this.generateStockPurchaseData( this.props.stockDataObjectToDisplay )
     )
   }
 
@@ -189,9 +199,9 @@ class SingleStock extends Component {
         <section className='ss-main'>
           <div>
             <h3>{`STOCK SYMBOL: ${this.props.stockDataObjectToDisplay.symbol}`}</h3>
-            <p>{`STOCK NAME: ${this.props.stockDataObjectToDisplay.name}`}</p>
-            <p>{`STOCK PRICE: ${this.props.stockDataObjectToDisplay.price}`}</p>
-            <p>{`STOCK CHANGE: ${this.props.stockDataObjectToDisplay.change}`}</p>
+            <p>{`STOCK NAME: ${this.props.stockDataObjectToDisplay.companyName}`}</p>
+            <p>{`STOCK PRICE: ${this.props.stockDataObjectToDisplay.latestPrice}`}</p>
+            <p>{`STOCK CHANGE: ${ (this.props.stockDataObjectToDisplay.changePercent * 100).toFixed(2) + ' %'}`}</p>
             <div className='ss-button-container'>
               <button 
                 className='ss-button-buy'

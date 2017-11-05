@@ -7,10 +7,19 @@ export const currentUserID = (state = '', action) => {
   }
 };
 
-export const userDataObject = (state = {}, action) => {
-  switch (action.type) {
+export const userDataObject = ( state = {}, action ) => {
+  switch ( action.type ) {
     case 'SET_USER_DATA':
       return action.userDataObject;
+    default:
+      return state;
+  }
+}
+
+export const userOwnedStocks = ( state = [], action ) => {
+  switch ( action.type ) {
+    case 'SET_USER_OWNED_STOCKS_ARRAY':
+      return action.userStocksArr;
     default:
       return state;
   }

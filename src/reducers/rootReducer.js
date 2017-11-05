@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { currentUserID, userDataObject } from './loginReducer';
+import { currentUserID, userDataObject, userOwnedStocks } from './loginReducer';
 import { searchTerm } from './LeaderboardReducer';
 import { stockSymbolToDisplay, stockDataObjectToDisplay } from './SearchResultsReducer';
 
@@ -8,7 +8,8 @@ const rootReducer = combineReducers({
   userDataObject,
   searchTerm,
   stockSymbolToDisplay,
-  stockDataObjectToDisplay
+  stockDataObjectToDisplay,
+  userOwnedStocks
 });
 
 export default rootReducer;
