@@ -22,6 +22,7 @@ export default class Search extends Component {
       return stock.symbol.toLowerCase().includes(this.state.search.toLowerCase()) || stock.name.toLowerCase().includes(this.state.search.toLowerCase())
     })
     if (filtered.length === 1) {
+      console.log(filtered[0].symbol);
       fetch(`https://api.iextrading.com/1.0/stock/${filtered[0].symbol}/quote`)
         .then(response => response.json())
         .then(parsed => ({
@@ -31,7 +32,8 @@ export default class Search extends Component {
           change: parsed.change,
           changePercent: parsed.changePercent
         }))
-        .then(stockSymbol => this.props.history.push(`/stock`))
+        .then(res => this.props.setStockDataObjectToDisplay(res))
+        this.props.history.push(`/stock`)
     } else {
       this.props.setSearchTerm(this.state.search)
       this.props.history.push(`/search`)

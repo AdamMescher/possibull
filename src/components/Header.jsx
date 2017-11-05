@@ -1,9 +1,12 @@
 import React from 'react';
 import Search from './Search';
-import { Link } from 'react-router-dom';
 import firebase from 'firebase';
 
-const Header = (props) => {
+const Header = ({
+  history,
+  setSearchTerm,
+  setStockDataObjectToDisplay
+}) => {
   return(
     <header className='header-container'>
       <section className='header-logo-container'>
@@ -19,7 +22,7 @@ const Header = (props) => {
             <button 
               className="header-nav-list-link"
               onClick={ () => {
-                props.history.push(`/portfolio`)
+                history.push(`/portfolio`)
               }}>
               portfolio 
             </button>
@@ -27,7 +30,7 @@ const Header = (props) => {
           <li className='header-nav-list-item'>
             <button 
               onClick={() => {
-                props.history.push('/leaderboard')
+                history.push('/leaderboard')
               }}
               className="header-nav-list-link">
               leaderboard
@@ -37,7 +40,7 @@ const Header = (props) => {
             <button
               onClick={ () => {
                 firebase.auth().signOut().then( function(){
-                  props.history.push('/login')
+                  history.push('/login')
                 })
                 
               } }>
@@ -45,8 +48,9 @@ const Header = (props) => {
             </button>
           </li>
           <Search 
-            history={props.history}
-            setSearchTerm={props.setSearchTerm}/>
+            history={history}
+            setSearchTerm={setSearchTerm}
+            setStockDataObjectToDisplay={setStockDataObjectToDisplay} />
         </ul>
       </nav>
     </header>

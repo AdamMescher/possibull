@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
-import { currentUserID } from './loginReducer';
-import { userDataObject } from './PortfolioContainerReducers';
+import { currentUserID, userDataObject } from './loginReducer';
 import { searchTerm } from './LeaderboardReducer';
 import { stockSymbolToDisplay, stockDataObjectToDisplay } from './SearchResultsReducer';
 
