@@ -1,33 +1,31 @@
 import React from 'react';
 import iexURL from '../utils/iexURL';
-import { fetchStockQuote } from '../utils/fetchHelpers'; 
 import PropTypes from 'prop-types';
 
-const StockCard = (props) => {
+const StockCard = ({
+  stock,
+  history,
+  addStockSymbolToDisplay
+}) => {
   return(
-    <div className='stockCard-container' 
-      onClick={() => {
-        props.addStockSymbolToDisplay(props.stock.symbol);
-        fetch( `${iexURL}/stock/${props.stock.symbol}/quote` )
-        .then( response => response.json() )
-        .then( rawStockObject => ({
-          name: rawStockObject.companyName,
-          symbol: rawStockObject.symbol,
-          price: rawStockObject.latestPrice,
-          change: (rawStockObject.change * 100).toFixed(2) + '%'
-        }) )
-        .then( cleanedObject => props.setStockDataObjectToDisplay(cleanedObject) )
-        .then( props.history.push('/stock') )
-        
-    }} >
-      <h3 className='stockCard-title'>{`${props.stock.symbol}`}</h3>
-      <p className='stockCard-name' >{`${props.stock.name}`}</p>
+    <div 
+      className='stockCard-container' 
+      onClick={
+        () => {
+          addStockSymbolToDisplay(stock.symbol);
+          history.push('/stock')
+        }
+    }>
+      <h3 className='stockCard-title'>{`${stock.symbol}`}</h3>
+      <p className='stockCard-name' >{`${stock.name}`}</p>
     </div>
   )
 }
 
 StockCard.propTypes = {
-  stock: PropTypes.object
+  stock: PropTypes.object,
+  history: PropTypes.func,
+  addStockSymbolToDisplay: PropTypes.func
 }
 
 export default StockCard;

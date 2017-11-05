@@ -14,14 +14,20 @@ const Portfolio = ({
   setUserData,
   setSearchTerm,
   fetchUserData,
-  setStockDataObjectToDisplay
+  setStockDataObjectToDisplay,
+  setUserOwnedStocks,
+  userOwnedStocks
 }) => 
 {
   if(userDataObject.portfolio){
-    const arrayOfSymbols = Object.keys( userDataObject.portfolio );
-    arrayOfSymbols.map( symbol => {
+    Object.keys(userOwnedStocks).map( stock => userOwnedStocks[stock] ).map( stock => {
       
-    } )
+    })
+
+    // GENERATE STOCK CARD FOR EACH STOCK WITH QUOTE
+
+    // CALCULATE NET WORTH
+
   }
   return (    
     <div className='portfolio-container'>
