@@ -21,9 +21,8 @@ const Header = ({
         <ul className='header-nav-list'>
           <li className='header-nav-list-item'>
             <button 
-              className="header-nav-list-link"
+              className="header-nav-list-button"
               onClick={ () => {
-
                 history.push(`/portfolio`)
               }}>
               portfolio 
@@ -31,22 +30,23 @@ const Header = ({
           </li>
           <li className='header-nav-list-item'>
             <button 
+              className="header-nav-list-button"
               onClick={() => {
                 history.push('/leaderboard')
-              }}
-              className="header-nav-list-link">
+              }} >
               leaderboard
             </button>
           </li>
           <li className='header-nav-list-item'>
             <button
+              className="header-nav-list-button"
               onClick={ () => {
                 firebase.auth().signOut().then( function(){
                   history.push('/login')
                 })
                 
               } }>
-              LOGOUT
+              logout
             </button>
           </li>
           <Search 

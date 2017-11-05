@@ -31,7 +31,7 @@ const Portfolio = ({
         history={history}
         setSearchTerm={setSearchTerm.bind(this)} 
         setStockDataObjectToDisplay={setStockDataObjectToDisplay.bind(this)} 
-        fetchStockQuote={fetchStockQuote }/>
+        fetchStockQuote={fetchStockQuote.bind(this)}/>
       <section className='portfolio-main-container'>
         <h3>Portfolio</h3>
         <p>{`USER ID: ${currentUserID}`}</p>
