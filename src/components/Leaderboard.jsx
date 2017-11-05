@@ -1,13 +1,17 @@
 import React from 'react';
 import Header from './Header';
-import { setSearchTerm } from '../containers/LeaderboardContainer';
 
-const Leaderboard = (props) => {
+const Leaderboard = ({
+  history,
+  setSearchTerm,
+  setStockDataObjectToDisplay
+}) => {
   return (
     <div className='leaderboard-container'>
       <Header 
-        history={props.history}
-        setSearchTerm={props.setSearchTerm.bind(this)} />
+        history={history}
+        setSearchTerm={setSearchTerm.bind(this)} 
+        setStockDataObjectToDisplay={setStockDataObjectToDisplay.bind(this)} />
       <section>
       <h1>LEADERBOARD</h1>
       <p>this is where the scores will go...eventually</p>

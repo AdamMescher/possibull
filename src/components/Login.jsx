@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import fire from '../utils/fire';
-import { setCurrentUserID } from '../reducers/loginReducer';
-import iexURL from '../utils/iexURL';
 import { fetchUserNetWorth } from '../utils/fetchHelpers';
 
 export default class Login extends Component {
@@ -36,6 +34,7 @@ export default class Login extends Component {
     fire.auth().onAuthStateChanged( (user) => {
       if (user) {
         this.props.setCurrentUserID(user.uid);
+        this.props.fetchUserData(user.uid);
         this.props.history.push(`/portfolio/${this.props.currentUserID}`)
       }
     });
@@ -59,10 +58,9 @@ export default class Login extends Component {
           netWorth: 1000000
         });
         this.props.setCurrentUserID(user.uid);
-        this.props.history.push(`/portfolio/`)
+        this.props.fetchUserData(user.uid);
+        this.props.history.push(`/portfolio/`);
 
-      } else {
-        this.props.setCurrentUserID('');
       }
     });
   };

@@ -5,26 +5,30 @@ import firebaseDatabaseSecret from '../utils/firebaseDatabaseSecret';
 import PropTypes from 'prop-types';
 import { userDataObject } from '../actions/PortfolioContainerActions';
 import StockCard from '../components/SingleStock';
+import iexURL from '../utils/iexURL';
 
 const Portfolio = ({
   currentUserID,
   history,
   userDataObject,
   setUserData,
-  setSearchTerm
-}) => {
-  if(!Object.keys(userDataObject).length){
-    setUserData({
-      id: currentUserID,
-      netWorth: 1000000,
-      portfolio: null
-    }) 
+  setSearchTerm,
+  fetchUserData,
+  setStockDataObjectToDisplay
+}) => 
+{
+  if(userDataObject.portfolio){
+    const arrayOfSymbols = Object.keys( userDataObject.portfolio );
+    arrayOfSymbols.map( symbol => {
+      
+    } )
   }
   return (    
     <div className='portfolio-container'>
       <Header 
         history={history}
-        setSearchTerm={setSearchTerm.bind(this)} />
+        setSearchTerm={setSearchTerm.bind(this)} 
+        setStockDataObjectToDisplay={setStockDataObjectToDisplay.bind(this)} />
       <section className='portfolio-main-container'>
         <h3>Portfolio</h3>
         <p>{`USER ID: ${currentUserID}`}</p>
@@ -37,7 +41,7 @@ const Portfolio = ({
 
 Portfolio.propTypes = {
   currentUserID: PropTypes.string,
-  history: PropTypes.func,
+  history: PropTypes.object,
   setUserData: PropTypes.func
 }
 

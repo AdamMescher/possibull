@@ -1,6 +1,7 @@
 import React from 'react';
 import iexURL from '../utils/iexURL';
 import { fetchStockQuote } from '../utils/fetchHelpers'; 
+import PropTypes from 'prop-types';
 
 const StockCard = (props) => {
   return(
@@ -13,7 +14,7 @@ const StockCard = (props) => {
           name: rawStockObject.companyName,
           symbol: rawStockObject.symbol,
           price: rawStockObject.latestPrice,
-          change: rawStockObject.change * 100 + '%'
+          change: (rawStockObject.change * 100).toFixed(2) + '%'
         }) )
         .then( cleanedObject => props.setStockDataObjectToDisplay(cleanedObject) )
         .then( props.history.push('/stock') )
@@ -23,6 +24,10 @@ const StockCard = (props) => {
       <p className='stockCard-name' >{`${props.stock.name}`}</p>
     </div>
   )
+}
+
+StockCard.propTypes = {
+  stock: PropTypes.object
 }
 
 export default StockCard;

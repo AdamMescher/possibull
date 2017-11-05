@@ -49,6 +49,7 @@ class SingleStock extends Component {
           ...this.props.userDataObject.portfolio,
           [this.props.stockDataObjectToDisplay.symbol]:
           {
+            symbol: this.props.stockDataObjectToDisplay.symbol,
             numberOfShares: parseInt(transactionData.numberOfShares)
           }
         },
@@ -61,6 +62,7 @@ class SingleStock extends Component {
           ...this.props.userDataObject.portfolio,
           [this.props.stockDataObjectToDisplay.symbol]:
           {
+            symbol: this.props.stockDataObjectToDisplay.symbol,
             numberOfShares: parseInt(transactionData.numberOfShares)
           }
         },
@@ -79,6 +81,7 @@ class SingleStock extends Component {
         portfolio: {
           ...this.props.userDataObject.portfolio,
           [this.props.stockDataObjectToDisplay.symbol]: {
+            symbol: this.props.stockDataObjectToDisplay.symbol,
             numberOfShares: parseInt(this.state.numberOfShares) + parseInt(this.props.userDataObject.portfolio[this.props.stockDataObjectToDisplay.symbol].numberOfShares)
           }
         },
@@ -91,6 +94,7 @@ class SingleStock extends Component {
           ...this.props.userDataObject.portfolio,
           [this.props.stockDataObjectToDisplay.symbol]:
           {
+            symbol: this.props.stockDataObjectToDisplay.symbol,
             numberOfShares: parseInt(transactionData.numberOfShares) + parseInt(this.props.userDataObject.portfolio[this.props.stockDataObjectToDisplay.symbol].numberOfShares)
           }
         },
@@ -109,6 +113,7 @@ class SingleStock extends Component {
         portfolio: {
           ...this.props.userDataObject.portfolio,
           [this.props.stockDataObjectToDisplay.symbol]: {
+            symbol: this.props.stockDataObjectToDisplay.symbol,
             numberOfShares: parseInt(this.props.userDataObject.portfolio[this.props.stockDataObjectToDisplay.symbol].numberOfShares) - parseInt(this.state.numberOfShares)
           }
         },
@@ -124,6 +129,7 @@ class SingleStock extends Component {
             portfolio: {
               ...this.props.userDataObject.portfolio,
               [this.props.stockDataObjectToDisplay.symbol]: {
+                symbol: this.props.stockDataObjectToDisplay.symbol,
                 numberOfShares: 
                   parseInt(this.props.userDataObject.portfolio[this.props.stockDataObjectToDisplay.symbol].numberOfShares) - 
                   parseInt(this.state.numberOfShares)
@@ -137,6 +143,7 @@ class SingleStock extends Component {
           portfolio: {
             ...this.props.userDataObject.portfolio,
             [this.props.stockDataObjectToDisplay.symbol]: {
+              symbol: this.props.stockDataObjectToDisplay.symbol,
               numberOfShares: 
                 parseInt(this.props.userDataObject.portfolio[this.props.stockDataObjectToDisplay.symbol].numberOfShares) - 
                 parseInt(this.state.numberOfShares)
@@ -151,16 +158,12 @@ class SingleStock extends Component {
   }
 
   handleBuyButtonClick = () => {
-
-
-    console.log('WELL?: ', this.props.userDataObject.portfolio)
-
-     || this.props.userDataObject.portfolio[this.props.stockDataObjectToDisplay.symbol]
-    ? this.buyUpdateExistingEntryInPortfolio(
-        this.generateStockPurchaseData(this.props.stockDataObjectToDisplay)
-      )
-    : this.createNewEntryInPortfolio(
-        this.generateStockPurchaseData(this.props.stockDataObjectToDisplay)
+    !this.props.userDataObject.portfolio || this.props.userDataObject.portfolio[this.props.stockDataObjectToDisplay.symbol]
+      ? this.createNewEntryInPortfolio(
+          this.generateStockPurchaseData(this.props.stockDataObjectToDisplay)
+        )
+      : this.createNewEntryInPortfolio(
+          this.generateStockPurchaseData(this.props.stockDataObjectToDisplay)
       )
   }
 
@@ -177,12 +180,12 @@ class SingleStock extends Component {
   }
 
   render(){
-    console.log(this.props.setSearchTerm);
     return (
       <div className='single-stock-container'>
         <Header 
           history={this.props.history}
-          setSearchTerm={this.props.setSearchTerm.bind(this)}/> 
+          setSearchTerm={this.props.setSearchTerm.bind(this)}
+          setStockDataObjectToDisplay={this.props.setStockDataObjectToDisplay.bind(this)} /> 
         <section className='ss-main'>
           <div>
             <h3>{`STOCK SYMBOL: ${this.props.stockDataObjectToDisplay.symbol}`}</h3>
