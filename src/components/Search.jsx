@@ -41,7 +41,6 @@ export default class Search extends Component {
   handleKeyPress(event) {
     if (event.key === 'Enter') {
       console.log('pressed enter');
-      // this.handleSearchButtonClick()
     }
   }
 

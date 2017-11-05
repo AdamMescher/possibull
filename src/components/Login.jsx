@@ -37,8 +37,6 @@ export default class Login extends Component {
       if (user) {
         this.props.setCurrentUserID(user.uid);
         this.props.history.push(`/portfolio/${this.props.currentUserID}`)
-      } else {
-        // this.props.setCurrentUserID('');
       }
     });
   }

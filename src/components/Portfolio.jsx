@@ -13,9 +13,6 @@ const Portfolio = ({
   setUserData,
   setSearchTerm
 }) => {
-
-  
-
   if(!Object.keys(userDataObject).length){
     setUserData({
       id: currentUserID,
@@ -23,12 +20,6 @@ const Portfolio = ({
       portfolio: null
     }) 
   }
-
-  if(userDataObject.portfolio){
-    Object.keys( userDataObject.portfolio ).map( stock => console.log(stock) )
-  }
-
-
   return (    
     <div className='portfolio-container'>
       <Header 
