@@ -1,16 +1,16 @@
-// import { dispatch } from 'react';
-// import { connect } from 'react-redux';
-// import Search from '../components/Search';
+import { dispatch } from 'react';
+import { connect } from 'react-redux';
+import Search from '../components/Search';
 
-// onst mapStateToProps = store => ({
-  
-// });
+const mapStateToProps = store => ({
+  searchTerm: store.searchTerm
+});
 
-// const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({
+  setSearchTerm: (term) => dispatch( searchTerm(term) )
+});
 
-// });
-
-// export default connect(
-//   undefined,
-//   undefined
-// )(Search);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Search);

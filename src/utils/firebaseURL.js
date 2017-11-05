@@ -1,3 +1,3 @@
-const firebaseURL = 'https://possibull-5f513.firebaseio.com/';
+const firebaseURL = 'https://possibull-5b10b.firebaseio.com';
 
 export default firebaseURL;

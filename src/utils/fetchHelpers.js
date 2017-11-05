@@ -1,21 +1,10 @@
+// import { userDataObject } from '../actions/PortfolioContainerActions';
 import iexURL from './iexURL';
 import firebaseURL from './firebaseURL';
-import firebaseDBSecret from './firebaseDatabaseSecret';
+import firebaseDatabaseSecret from './firebaseDatabaseSecret';
+import { userDataObject } from '../actions/PortfolioContainerActions';
 
-const fetchStockSymbols = () => {
-  fetch(`${iexURL}/ref-data/symbols` )
-    .then( response => response.json() )
-}
-
-export default fetchStockSymbols;
-
-// export const fetchStockQuote = (stockSymbol) => {
-//   fetch(`${iexURL}/stock/${stockSymbol}/quote`)
-//     .then( response => response.json() )
-//     .then( parsed => cleanStockQuoteData(parsed) )
-// }
-
-const fetchStockQuote = (stockSymbol) => {
+export const fetchStockQuote = (stockSymbol) => {
   fetch(`${iexURL}/stock/${stockSymbol}/quote`)
     .then(response => response.json())
     .then(parsed => cleanStockQuoteData(parsed))
@@ -39,10 +28,8 @@ const cleanStockQuoteData = ({
   marketCap
  });
 
- export const getArrayOfStockSymbols = () => {
-   fetch(`${firebaseURL}/symbols.json?auth=${firebaseDBSecret}`)
-     .then(response => response.json())
-     .then(parsed => Object.keys(parsed).map(symbol => parsed[symbol]))
- };
-
- 
+export const fetchUserData = userID => dispatch => {
+  fetch(`${firebaseURL}/users/${userID}.json?auth=${firebaseDatabaseSecret}`)
+  .then( res => res.json() )
+  .then( res => console.log(res) )
+}

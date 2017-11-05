@@ -16,31 +16,37 @@ const Header = (props) => {
       <nav className='header-nav'>
         <ul className='header-nav-list'>
           <li className='header-nav-list-item'>
-            <Link 
+            <button 
               className="header-nav-list-link"
-              to={ `/portfolio` }>
+              onClick={ () => {
+                props.history.push(`/portfolio`)
+              }}>
               portfolio 
-            </Link>
+            </button>
           </li>
           <li className='header-nav-list-item'>
-            <Link 
-              to={ `/leaderboard` }
+            <button 
+              onClick={() => {
+                props.history.push('/leaderboard')
+              }}
               className="header-nav-list-link">
               leaderboard
-            </Link>
+            </button>
           </li>
           <li className='header-nav-list-item'>
             <button
               onClick={ () => {
                 firebase.auth().signOut().then( function(){
-                  
+                  props.history.push('/login')
                 })
                 
               } }>
               LOGOUT
             </button>
           </li>
-          <Search arrayOfStockSymbols={props.arrayOfStockSymbols}/>
+          <Search 
+            history={props.history}
+            setSearchTerm={props.setSearchTerm}/>
         </ul>
       </nav>
     </header>

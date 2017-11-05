@@ -1,12 +1,15 @@
 import { combineReducers } from 'redux';
 import { currentUserID } from './loginReducer';
-import { userPortfolio, userNetWorth, stockSymbolsArray } from './PortfolioContainerReducers';
+import { userDataObject } from './PortfolioContainerReducers';
+import { searchTerm } from './LeaderboardReducer';
+import { stockSymbolToDisplay, stockDataObjectToDisplay } from './SearchResultsReducer';
 
 const rootReducer = combineReducers({
   currentUserID,
-  userPortfolio,
-  userNetWorth,
-  stockSymbolsArray
+  userDataObject,
+  searchTerm,
+  stockSymbolToDisplay,
+  stockDataObjectToDisplay
 });
 
 export default rootReducer;

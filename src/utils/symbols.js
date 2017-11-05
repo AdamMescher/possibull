@@ -1,4 +1,4 @@
-const symbols = [
+export const symbols = [
     {
         "symbol": "A",
         "name": "Agilent Technologies Inc.",
@@ -59121,17 +59121,5 @@ const symbols = [
         "isEnabled": true,
         "type": "cs"
     }
-]
-
-const period = symbols.filter( stock => stock.symbol.includes('.') ) 
-const dollarSign = symbols.filter( stock => stock.symbol.includes('$') )
-const underscore = symbols.filter( stock => stock.symbol.includes('_') )
-const leftBracket = symbols.filter( stock => stock.symbol.includes('[') )
-const rightBracket = symbols.filter( stock => stock.symbol.includes(']') )
-
-console.log('period: ', period.length);
-console.log('dollarSign: ', dollarSign.length);
-console.log('underscore: ', underscore.length);
-console.log('[: ', leftBracket.length);
-console.log(']: ', rightBracket.length);
+];
 

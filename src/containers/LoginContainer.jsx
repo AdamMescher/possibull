@@ -4,7 +4,9 @@ import { currentUserID } from '../actions/LoginContainerActions';
 
 
 const mapStateToProps = store => ({
-  currentUserID: store.currentUserID
+  currentUserID: store.currentUserID,
+  currentNetWorth: store.currentNetWorth,
+  currentPortfolio: store.currentPortfolio
 });
 
 const mapDispatchToProps = dispatch => ({
