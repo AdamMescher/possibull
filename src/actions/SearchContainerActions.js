@@ -1,4 +1,4 @@
-export const stockSymbolsArray = (arrayOfStockSymbols) => ({
-  type: 'SET_STOCK_SYMBOLS_ARRAY',
-  arrayOfStockSymbols
+export const searchTerm = searchTerm => ({
+  type: 'SET_SEARCH_TERM',
+  searchTerm
 });

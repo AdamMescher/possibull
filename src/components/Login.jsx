@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
 import fire from '../utils/fire';
-// import fetchStockSymbols from '../utils/fetchHelpers';
 import { setCurrentUserID } from '../reducers/loginReducer';
 import iexURL from '../utils/iexURL';
+import { fetchUserNetWorth } from '../utils/fetchHelpers';
 
 export default class Login extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       email: 'a@a.com',
       password: 'aaaaaa',
@@ -24,30 +23,6 @@ export default class Login extends Component {
     });
   }
 
-  // componentDidMount() {
-  //   fetch(`${iexURL}/ref-data/symbols`)
-  //     .then(response => response.json())
-  //     .then(parsed => {
-  //       if(parsed){
-          
-  //         return parsed.map( stock => {
-  //           if( stock.symbol.includes( '.' ) ){
-  //             stock.symbol = stock.symbol.replace('.', '_period_')
-  //           } 
-  //           if (stock.symbol.includes('#')){
-  //             stock.symbol = stock.symbol.replace('#', '_pound_')
-  //           }
-  //           console.log(stock.symbol);
-  //           fire.database().ref(`symbols/${stock.symbol}`).set({
-  //             symbol: stock.symbol,
-  //             name: stock.name,
-  //             type: stock.type
-  //           })  
-  //         })
-  //       }
-  //   })
-  // }
-
   handleLogin(event) {
     event.preventDefault();
 
@@ -61,11 +36,7 @@ export default class Login extends Component {
     fire.auth().onAuthStateChanged( (user) => {
       if (user) {
         this.props.setCurrentUserID(user.uid);
-        
-        // STEP 2: REDIRECT TO PORTFOLIO
-        return (<Redirect to='/portfolio' />)
-      } else {
-        this.props.setCurrentUserID('');
+        this.props.history.push(`/portfolio/${this.props.currentUserID}`)
       }
     });
   }
@@ -88,15 +59,13 @@ export default class Login extends Component {
           netWorth: 1000000
         });
         this.props.setCurrentUserID(user.uid);
-        
+        this.props.history.push(`/portfolio/`)
 
       } else {
         this.props.setCurrentUserID('');
       }
     });
-
-    // REDIRECT TO PORTFOLIO
-  }
+  };
 
   writeUserData(user){
     fire.database().ref(`users/${user.uid}`).set({
@@ -104,12 +73,6 @@ export default class Login extends Component {
       portfolio: [],
       netWorth: 100000
     });
-  }
-
-  redirectToPortfolio(){
-    if(this.props.currentUserID.length){
-      return (<Redirect to='/portfolio' />);
-    }
   }
 
   generateErrorMessage(){
@@ -157,7 +120,6 @@ export default class Login extends Component {
             {this.generateErrorMessage}
           </form>
         </section>
-        {this.redirectToPortfolio()}
       </div>
     );
   }

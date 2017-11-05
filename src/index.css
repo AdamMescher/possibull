@@ -64,6 +64,39 @@
   margin-top: 50px;
   overflow-y: hidden; }
 
+.ss-button-container {
+  display: flex;
+  flex-direction: column; }
+
+.ss-button-container button {
+  background-color: white;
+  color: black;
+  width: 100%;
+  height: 50px;
+  margin-top: 15px; }
+
+.ss-button-buy {
+  border: 2px green solid; }
+
+.ss-button-buy:hover {
+  background-color: green;
+  color: white; }
+
+.ss-num-shares-input {
+  height: 50px;
+  width: 100%;
+  margin-top: 15px;
+  text-align: center;
+  font-size: 20px;
+  border: none; }
+
+.ss-button-sell {
+  border: 2px red solid; }
+
+.ss-button-sell:hover {
+  background-color: red;
+  color: white; }
+
 .search-input {
   width: 300px; }
 
@@ -121,6 +154,32 @@
   flex-direction: column;
   justify-content: center;
   align-items: center; }
+
+.stockCard-container {
+  border: 2px solid black;
+  margin: 10px;
+  padding: 10px;
+  width: 300px; }
+
+.stockCard-container:hover {
+  background-color: red;
+  border: 2px solid red;
+  color: white; }
+
+.stockCard-title {
+  font-size: 24px; }
+
+.stockCard-name {
+  width: 200px; }
+
+.searchResults-container {
+  height: 100vh;
+  width: 100%; }
+
+.searchResults-card-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; }
 
 * {
   margin: 0;
