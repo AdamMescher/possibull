@@ -14,27 +14,24 @@ const Portfolio = ({
   setUserData,
   setSearchTerm,
   fetchUserData,
+  fetchStockQuote,
   setStockDataObjectToDisplay,
   setUserOwnedStocks,
   userOwnedStocks
 }) => 
 {
-  if(userDataObject.portfolio){
-    Object.keys(userOwnedStocks).map( stock => userOwnedStocks[stock] ).map( stock => {
-      
-    })
+  console.log(  )
 
     // GENERATE STOCK CARD FOR EACH STOCK WITH QUOTE
 
     // CALCULATE NET WORTH
-
-  }
   return (    
     <div className='portfolio-container'>
       <Header 
         history={history}
         setSearchTerm={setSearchTerm.bind(this)} 
-        setStockDataObjectToDisplay={setStockDataObjectToDisplay.bind(this)} />
+        setStockDataObjectToDisplay={setStockDataObjectToDisplay.bind(this)} 
+        fetchStockQuote={fetchStockQuote }/>
       <section className='portfolio-main-container'>
         <h3>Portfolio</h3>
         <p>{`USER ID: ${currentUserID}`}</p>
