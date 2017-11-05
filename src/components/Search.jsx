@@ -17,29 +17,22 @@ export default class Search extends Component {
     })
   }
 
-  handleSearchButtonClick = (searchTerm) => {
-    const filtered = symbols.filter(stock => {
+  handleSearchButtonClick = searchTerm => {
+    const filtered = symbols.filter( stock => {
       return stock.symbol.toLowerCase().includes(this.state.search.toLowerCase())   || 
              stock.name.toLowerCase().includes(this.state.search.toLowerCase())     || 
              stock.symbol.toLowerCase().startsWith(this.state.search.toLowerCase()) ||
              stock.name.toLowerCase().startsWith(this.state.search.toLowerCase())
-    })
-    if (filtered.length === 1) {
-      console.log(filtered[0].symbol);
-      fetch(`https://api.iextrading.com/1.0/stock/${filtered[0].symbol}/quote`)
-        .then(response => response.json())
-        .then(parsed => ({
-          symbol: parsed.symbol,
-          name: parsed.companyName,
-          price: parsed.latestPrice,
-          change: parsed.change,
-          changePercent: parsed.changePercent
-        }))
-        .then(res => this.props.setStockDataObjectToDisplay(res))
-        this.props.history.push(`/stock`)
+      })
+    if (filtered.length === 1 && filtered[0].symbol) {
+      console.log( filtered[0].symbol );
+      this.props.fetchStockQuote( filtered[0].symbol );
+      this.setState({ search: '' })
+      this.props.history.push( `/stock` );
     } else {
-      this.props.setSearchTerm(this.state.search)
-      this.props.history.push(`/search`)
+      this.props.setSearchTerm( this.state.search );
+      this.setState({ search: '' })
+      this.props.history.push( `/search` );
     }
   }
 
@@ -53,6 +46,7 @@ export default class Search extends Component {
     return (
       <div>
       <input
+        id='searchInput'
         className='search-input'
         type='text' 
         placeholder='search'

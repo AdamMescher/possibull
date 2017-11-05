@@ -5,6 +5,7 @@ import firebase from 'firebase';
 const Header = ({
   history,
   setSearchTerm,
+  fetchStockQuote,
   setStockDataObjectToDisplay
 }) => {
   return(
@@ -22,6 +23,7 @@ const Header = ({
             <button 
               className="header-nav-list-link"
               onClick={ () => {
+
                 history.push(`/portfolio`)
               }}>
               portfolio 
@@ -50,7 +52,8 @@ const Header = ({
           <Search 
             history={history}
             setSearchTerm={setSearchTerm}
-            setStockDataObjectToDisplay={setStockDataObjectToDisplay} />
+            setStockDataObjectToDisplay={setStockDataObjectToDisplay} 
+            fetchStockQuote ={fetchStockQuote} />
         </ul>
       </nav>
     </header>

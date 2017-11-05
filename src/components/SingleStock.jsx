@@ -12,7 +12,9 @@ class SingleStock extends Component {
   }
 
   componentDidMount(){
-    this.props.fetchStockQuote( this.props.stockSymbolToDisplay )
+    if(!this.props.stockDataObjectToDisplay){
+      this.props.fetchStockQuote( this.props.stockSymbolToDisplay )
+    }
   }
 
   generateStockPurchaseData = stock => ({
@@ -195,7 +197,9 @@ class SingleStock extends Component {
         <Header 
           history={this.props.history}
           setSearchTerm={this.props.setSearchTerm.bind(this)}
-          setStockDataObjectToDisplay={this.props.setStockDataObjectToDisplay.bind(this)} /> 
+          setStockDataObjectToDisplay={this.props.setStockDataObjectToDisplay.bind(this)} 
+          fetchStockQuote={this.props.fetchStockQuote}
+          /> 
         <section className='ss-main'>
           <div>
             <h3>{`STOCK SYMBOL: ${this.props.stockDataObjectToDisplay.symbol}`}</h3>

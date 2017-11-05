@@ -12,8 +12,6 @@ export const fetchStockQuote = stockSymbol => dispatch => {
     .then( res => dispatch( stockDataObjectToDisplay( res ) ) ) 
 }
 
-
-
 const cleanStockQuoteData = ({
   symbol,
   companyName,
@@ -33,8 +31,10 @@ const cleanStockQuoteData = ({
  });
 
 export const fetchUserData = userID => dispatch => {
+  console.log((`${firebaseURL}/users/${userID}.json?auth=${firebaseDatabaseSecret}`));
   return fetch(`${firebaseURL}/users/${userID}.json?auth=${firebaseDatabaseSecret}`)
   .then( res => res.json() )
   .then( res => dispatch( userDataObject( res ) ) )
   .catch( error => alert(error) )
 }
+
