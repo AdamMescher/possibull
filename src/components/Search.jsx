@@ -44,7 +44,7 @@ export default class Search extends Component {
 
   render() {
     return (
-      <div>
+      <div className='search-container'>
       <input
         id='searchInput'
         className='search-input'
@@ -52,11 +52,11 @@ export default class Search extends Component {
         placeholder='search'
         onChange={ this.handleChange.bind(this, 'search') } 
         onKeyDown={ this.handleKeyPress }/>
-        <button
+        <input
+          type='image'
           className='search-button'
-          onClick={ this.handleSearchButtonClick }>
-          search
-        </button>
+          onClick={ this.handleSearchButtonClick }
+          src={require('../assets/icons/icon-search-electricblue.svg')}/>
       </div>
     )
   }
