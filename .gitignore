@@ -31,4 +31,5 @@ firebaseDatabaseSecret.js
 #quandl api key
 quandlApiKey.js
 
-*.snap
+#snapshots
+*.js.snap
