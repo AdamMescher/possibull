@@ -1,3 +1,4 @@
+import "babel-polyfill";
 import React from 'react';
 import { symbols } from '../utils/symbols';
 import Header from '../components/Header';
@@ -25,7 +26,7 @@ const SearchResults = ({
       stock={stock}
       history={history}
       addStockSymbolToDisplay={addStockSymbolToDisplay}
-      setStockDataObjectToDisplay={setStockDataObjectToDisplay.bind(this)}/>;
+      setStockDataObjectToDisplay={setStockDataObjectToDisplay}/>;
   });
 
   return (

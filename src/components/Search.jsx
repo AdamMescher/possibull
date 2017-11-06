@@ -1,3 +1,4 @@
+import "babel-polyfill";
 import React, {Component} from 'react';
 import { symbols } from '../utils/symbols';
 import PropTypes from 'prop-types';
@@ -35,11 +36,11 @@ export default class Search extends Component {
     }
   }
 
-  handleKeyPress(event) {
-    if ( event.key === 'Enter' ) {
-      () => {};
-    }
-  }
+  // handleKeyPress(event) {
+  //   if ( event.key === 'Enter' ){
+  //
+  //   }
+  // }
 
   render() {
     return (

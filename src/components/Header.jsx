@@ -1,3 +1,4 @@
+import "babel-polyfill";
 import React from 'react';
 import fire from 'firebase';
 import Search from './Search';

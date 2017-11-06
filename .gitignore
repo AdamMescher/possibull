@@ -30,3 +30,7 @@ firebaseDatabaseSecret.js
 
 #quandl api key
 quandlApiKey.js
+
+
+## SNAPSHOTS
+src/tests/component-tests/__snapshots__/*

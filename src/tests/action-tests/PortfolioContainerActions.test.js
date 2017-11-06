@@ -1,18 +1,76 @@
-import { userData } from '../../actions/PortfolioContainerActions';
+import {
+  userOwnedStocks,
+  userDataObject,
+  portfolioQuotes,
+  combinedStockCurrentValue } from '../../actions/PortfolioContainerActions';
 
-describe ( 'PORTFOLIO CONTAINER ACTIONS', () => {
-  it( 'should return user data object', () => {
-    const mockUserData = {
-      id: 'GUIbv12tEmVTLQyDFZdkinbxp642',
-      netWorth: 1000000,
-      userPortfolio: { TSLA: {symbol: 'TSLA', numShares: 5} }
-    }
+describe( 'PORTFOLIO CONTAINER ACTIONS', () => {
+
+  it( `should return an array of user owned stocks`, () => {
+    const mockUserOwnedStocks = [
+      {symbol: 'TSLA', numberOfShares: 5},
+      {symbol: 'NFLX', numberOfShares: 10}
+    ];
     const expected = {
-      type: 'SET_USER_DATA',
-      userData: mockUserData
+      type: 'SET_USER_OWNED_STOCKS_ARRAY',
+      userStocksArr: mockUserOwnedStocks
     };
-    const expectation = userData(mockUserData);
+    const expectation = userOwnedStocks(mockUserOwnedStocks);
 
     expect(expectation).toEqual(expected);
   });
+
+  it( `should return user data object`, () => {
+    const mockUserData = {
+      id: 'GUIbv12tEmVTLQyDFZdkinbxp642',
+      netWorth: 1000000,
+      userPortfolio: { TSLA: {symbol: 'TSLA', numberOfShares: 5} }
+    };
+    const expected = {
+      type: 'SET_USER_DATA',
+      userDataObject: mockUserData
+    };
+    const expectation = userDataObject(mockUserData);
+
+    expect(expectation).toEqual(expected);
+  });
+
+  it( `should return array of stock portfolio quote objects`, () => {
+    const mockPortfolioQuotes = [
+      {
+        symbol: 'TSLA',
+        companyName: 'TESLA, Inc.',
+        sector: 'automotive, solar',
+        latestPrice: 306.09,
+        marketCap: 51.08
+      },
+      {
+        symbol: 'NFLX',
+        companyName: 'Netflix, Inc.',
+        sector: 'entertainment',
+        latestPrice: 200.01,
+        marketCap: 86.55
+      }
+    ];
+    const expected = {
+      type: 'SET_PORTFOLIO_QUOTES',
+      quotes: mockPortfolioQuotes
+    };
+    const expectation = portfolioQuotes(mockPortfolioQuotes);
+
+    expect(expectation).toEqual(expected);
+  });
+
+  it( `should return the current value of all stocks in portfolio`, () => {
+
+    const mockStocksValue = 15783.43;
+    const expected = {
+      type: 'SET_STOCKS_CURRENT_VALUE',
+      stocksValue: mockStocksValue
+    };
+    const expectation = combinedStockCurrentValue(mockStocksValue);
+
+    expect(expectation).toEqual(expected);
+  });
+
 });

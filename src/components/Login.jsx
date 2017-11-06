@@ -1,3 +1,4 @@
+import "babel-polyfill";
 import React, { Component } from 'react';
 import fire from '../utils/fire';
 import PropTypes from 'prop-types';
@@ -32,9 +33,9 @@ export default class Login extends Component {
 
     fire.auth().onAuthStateChanged( user => {
       if ( user ) {
-        this.props.setCurrentUserID( user.uid );
-        this.props.fetchUserData( user.uid );
-        this.props.history.push( `/portfolio` );
+        this.props.setCurrentUserID(user.uid);
+        this.props.fetchUserData(user.uid);
+        this.props.history.push(`/portfolio`);
       }
     });
   }
