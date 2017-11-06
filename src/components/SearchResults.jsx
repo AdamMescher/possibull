@@ -20,6 +20,16 @@ const SearchResults = ({
            stock.name.toLowerCase().includes(searchTerm.toLowerCase());
   });
 
+  const noMatchingResults = () => {
+    return(
+      <div className='searchResults-container-none-found'>
+        <h2 className='no-matching-results'>
+          {`NO STOCKS MATCH THAT SEARCH`}
+        </h2>
+      </div>
+    )
+  }
+
   const mappedMatchingStock = matchingStocks.map( stock => {
     return <StockCard
       key={stock.symbol}
@@ -39,7 +49,10 @@ const SearchResults = ({
         setSearchTerm={setSearchTerm.bind(this)}
         setStockDataObjectToDisplay={setStockDataObjectToDisplay.bind(this)} />
       <section className='searchResults-card-container'>
-        {mappedMatchingStock}
+        { matchingStocks.length
+          ? mappedMatchingStock
+          : noMatchingResults()
+        }
       </section>
     </div>
   );

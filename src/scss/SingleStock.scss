@@ -1,8 +1,9 @@
 @import './variables.scss';
 
-.single-stock {
+.single-stock-container {
   height: 100vh;
   width: 100%;
+  background-color: #E8F3FA;
 }
 
 .ss-main {
@@ -88,4 +89,10 @@
 
 .green {
   color: green;
+}
+
+.ss-button-portfolio-update {
+  color: black;
+  height: 200px;
+  width: 150px;
 }

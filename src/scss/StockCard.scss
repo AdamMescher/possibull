@@ -26,6 +26,10 @@
   cursor: pointer;
 }
 
+.portfolio-card {
+  background-color: white;
+}
+
 .portfolio-card h3 {
   margin-top: 10px;
 }
@@ -45,5 +49,12 @@
 }
 
 .search-card {
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+}
+
+.stock-card p {
+  margin-top: 5px;
 }

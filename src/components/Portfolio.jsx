@@ -57,9 +57,9 @@ const Portfolio = ({
         }/>
       <section className='portfolio-main-container'>
         <article className='portfolio-numbers-container'>
-          <p className='pmc-cash'>{`cash: $${userDataObject.netWorth}`}</p>
-          <p className='pmc-portfolio-value' >{`portfolio value: $${combinedStockCurrentValue}`}</p>
-          <p className='pmc-total-value'>{`new worth: $${userDataObject.netWorth + combinedStockCurrentValue}`}</p>
+          <p className='pmc-cash'>{`cash $${userDataObject.netWorth}`}</p>
+          <p className='pmc-total-value'>{`$${userDataObject.netWorth + combinedStockCurrentValue}`}</p>
+          <p className='pmc-portfolio-value' >{`portfolio $${parseInt(combinedStockCurrentValue).toFixed(2)}`}</p>
         </article>
         <article className='stock-card-container'>
           {
@@ -69,7 +69,7 @@ const Portfolio = ({
           }
         </article>
         <button
-          className="ss-button-update-portfolio"
+          className="portfolio-button-update"
           onClick={() => {
             fetchPortfolioQuotes(userDataObject.portfolio);
 
