@@ -53,12 +53,13 @@
 
 .header-nav-list-link {
   text-decoration: none;
+  background: none;
 }
 
 .header-nav-list-button {
   height: 30px;
   margin-right: 25px;
-  background-color: white; 
+  background: none;
   border: none;
   font-size: 24px;
   color: $logo-primary;
