@@ -4,7 +4,7 @@ import { fetchUserDataHelper, fetchStockQuote, fetchPortfolioQuotesHelper } from
 import { searchTerm } from '../actions/LeaderboardActions';
 import { stockDataObjectToDisplay, addStockSymbolToDisplay } from '../actions/SearchResultsActions';
 import { userOwnedStocks } from '../actions/LoginContainerActions';
-import { userDataObject, portfolioQuotes } from '../actions/PortfolioContainerActions';
+import { userDataObject } from '../actions/PortfolioContainerActions';
 
 
 
@@ -15,6 +15,7 @@ const mapStateToProps = store => ({
   userOwnedStocks: store.userOwnedStocks,
   portfolioQuotes: store.portfolioQuotes,
   stockSymbolToDisplay: store.stockSymbolToDisplay,
+  combinedStockCurrentValue: store.combinedStockCurrentValue
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -30,14 +30,14 @@ export const generateNewPortfolio = ( type, currentPortfolio, stockSymbol, purch
 
 export const generateNewNetWorth = ( currentNetWorth, cost, type ) => {
   return type === 'buy'
-    ? (parseInt( currentNetWorth ) - parseInt( cost )).toFixed(2)
-    : (parseInt( currentNetWorth ) + parseInt( cost )).toFixed(2)
+    ? (parseInt( currentNetWorth, 10 ) - parseInt( cost, 10 )).toFixed(2)
+    : (parseInt( currentNetWorth, 10 ) + parseInt( cost, 10 )).toFixed(2)
 };
 
 export const generateUpdatedUserObject = (id, portfolio, netWorth) => ({
   id: id,
   portfolio: portfolio,
-  netWorth: parseInt(netWorth)
+  netWorth: parseInt( netWorth, 10 )
 });
 
 export const setFirebaseObject = ( userID, updatedUserData ) => {

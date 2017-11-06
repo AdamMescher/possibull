@@ -1,5 +1,4 @@
 import React from 'react';
-import iexURL from '../utils/iexURL';
 import PropTypes from 'prop-types';
 
 const StockCard = ({

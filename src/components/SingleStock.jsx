@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Header from './Header';
-import iexURL from '../utils/iexURL';
-import fire from 'firebase';
+
 import { 
   checkAvailableFunds, 
   checkNumberOfShares, 
@@ -42,7 +41,7 @@ class SingleStock extends Component {
           'buy',
           this.props.userDataObject.portfolio,
           this.props.stockDataObjectToDisplay.symbol,
-          parseInt(transactionData.numberOfShares)
+          parseInt(transactionData.numberOfShares, 10)
         ),
         generateNewNetWorth(
           this.props.userDataObject.netWorth,
@@ -57,14 +56,14 @@ class SingleStock extends Component {
   }
 
   buyUpdateExistingEntryInPortfolio = transactionData => {
-    if (checkAvailableFunds(transactionData.cost, parseInt(this.props.userDataObject.netWorth)) ){
+    if (checkAvailableFunds(transactionData.cost, parseInt(this.props.userDataObject.netWorth, 10)) ){
       const updatedUserObject = generateUpdatedUserObject(
         this.props.currentUserID,
         generateNewPortfolio(
           'buy',
           this.props.userDataObject.portfolio,
           this.props.stockDataObjectToDisplay.symbol,
-          parseInt(transactionData.numberOfShares),
+          parseInt(transactionData.numberOfShares, 10),
           this.props.userDataObject.portfolio[this.props.stockDataObjectToDisplay.symbol].numberOfShares
         ),
         generateNewNetWorth(
@@ -87,7 +86,7 @@ class SingleStock extends Component {
           'sell',
           this.props.userDataObject.portfolio,
           this.props.stockDataObjectToDisplay.symbol,
-          parseInt(transactionData.numberOfShares),
+          parseInt(transactionData.numberOfShares, 10),
           this.props.userDataObject.portfolio[this.props.stockDataObjectToDisplay.symbol].numberOfShares
         ),
         generateNewNetWorth(

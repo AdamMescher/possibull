@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { withRouter } from 'react-router-dom';
 import { symbols } from '../utils/symbols';
 
 export default class Search extends Component {
@@ -55,7 +54,8 @@ export default class Search extends Component {
           type='image'
           className='search-button'
           onClick={ this.handleSearchButtonClick }
-          src={require('../assets/icons/icon-search-electricblue.svg')}/>
+          src={require('../assets/icons/icon-search-electricblue.svg')}
+          alt={`Icon of magnifying glass`}/>
       </div>
     )
   }
