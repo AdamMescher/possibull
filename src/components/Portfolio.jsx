@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import Header from './Header';
-import firebaseURL from '../utils/firebaseURL';
-import firebaseDatabaseSecret from '../utils/firebaseDatabaseSecret';
-import PropTypes from 'prop-types';
 import StockCard from '../components/StockCard';
-import { iexURL } from '../utils/iexURL';
+import PropTypes from 'prop-types';
 
 class Portfolio extends Component {
   
@@ -22,7 +19,7 @@ class Portfolio extends Component {
   }
   
   render(){
-    if ( !this.props.portfolioQuotes.length ) {
+    if ( !this.props.portfolioQuotes.length && this.props.userDataObject ) {
       this.props.fetchPortfolioQuotes( this.props.userDataObject.portfolio )
     }
     
@@ -39,8 +36,8 @@ class Portfolio extends Component {
         <section className='portfolio-main-container'>
           <h3>Portfolio</h3>
           <p>{`USER ID: ${this.props.currentUserID}`}</p>
-          <p>{`USER PORTFOLIO: ${this.props.userDataObject.portfolio || 'TIME TO BUY SOME STOCKS'}`}</p>
-          <p>{`USER NET WORTH: ${this.props.userDataObject.netWorth}`}</p>
+          <p>{`CASH: $${this.props.userDataObject.netWorth}`}</p>
+          <p>{`PORTFOLIO CURRENT VALUE: $${this.props.combinedStockCurrentValue}`}</p>
           { 
             this.props.portfolioQuotes.length
             ? this.generatePortfolioQuoteStockCards( this.props.portfolioQuotes )
@@ -53,9 +50,22 @@ class Portfolio extends Component {
 };
 
 Portfolio.propTypes = {
+  addStockSymbolToDisplay: PropTypes.func,
+  combinedStockCurrentValue: PropTypes.number,
   currentUserID: PropTypes.string,
+  fetchPortfolioQuotes: PropTypes.func,
+  fetchStockQuote: PropTypes.func,
+  fetchUserData: PropTypes.func,
   history: PropTypes.object,
-  setUserData: PropTypes.func
+  portfolioQuotes: PropTypes.array,
+  searchTerm: PropTypes.string,
+  setSearchTerm: PropTypes.func,
+  setStockDataObjectToDisplay: PropTypes.func,
+  setUserData: PropTypes.func,
+  setUserOwnedStocks: PropTypes.func,
+  stockSymbolToDisplay: PropTypes.string,
+  userDataObject: PropTypes.object,
+  userOwnedStocks: PropTypes.array
 }
 
 export default Portfolio;

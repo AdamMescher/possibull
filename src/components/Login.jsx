@@ -40,6 +40,10 @@ export default class Login extends Component {
   handleSignUp(event){
     event.preventDefault();
 
+    if (this.state.password !== this.state.verifyPassword) {
+      alert('Passwords do not match')
+    }
+
     fire.auth().createUserWithEmailAndPassword( this.state.email, this.state.password )
       .catch( function( error ) {
         alert( error.message )

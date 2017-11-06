@@ -1,4 +1,4 @@
-import { userDataObject, portfolioQuotes} from '../actions/PortfolioContainerActions';
+import { userDataObject, portfolioQuotes, combinedStockCurrentValue } from '../actions/PortfolioContainerActions';
 import { iexURL } from './iexURL';
 import { firebaseURL } from './firebaseURL';
 import { firebaseDatabaseSecret } from './firebaseDatabaseSecret';
@@ -19,11 +19,13 @@ export const fetchPortfolioQuotesHelper = portfolio => dispatch => {
   const stockQuotes = Object.keys( portfolio ).map( symbol => {
     return fetch(`${iexURL}/stock/${symbol}/quote`)
     .then( res => res.json() )
-    .then( res => res )
   })
 
   Promise.all( stockQuotes )
-  .then( res => dispatch( portfolioQuotes( res ) ) )
+  .then( res => {
+      dispatch( portfolioQuotes( res ) );
+      dispatch( combinedStockCurrentValue( calculateStockValue( res, portfolio ) ) )
+  })
 }
 
 const cleanStockQuoteData = ({
@@ -43,6 +45,10 @@ const cleanStockQuoteData = ({
   changePercent,
   marketCap
  });
+
+const calculateStockValue = (quotes, portfolio) => quotes.reduce( (acc, quote) => {
+  return acc += quote.latestPrice * portfolio[quote.symbol].numberOfShares;
+}, 0);
 
 export const fetchUserDataHelper = userID => dispatch => {
   if( !userID ) { return }

@@ -11,4 +11,9 @@ export const userDataObject = userDataObject => ({
 export const portfolioQuotes = quotes => ({
   type: 'SET_PORTFOLIO_QUOTES',
   quotes
-})
+});
+
+export const combinedStockCurrentValue = stocksValue => ({
+  type: 'SET_STOCKS_CURRENT_VALUE',
+  stocksValue
+});

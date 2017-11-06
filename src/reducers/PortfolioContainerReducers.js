@@ -24,3 +24,12 @@ export const portfolioQuotes = ( state = [], action ) => {
       return state;
   }
 }
+
+export const combinedStockCurrentValue = ( state = 0, action ) => {
+  switch ( action.type ) {
+    case 'SET_STOCKS_CURRENT_VALUE':
+      return action.stocksValue;
+    default:
+      return state;
+  }
+}

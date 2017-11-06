@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { currentUserID } from './loginReducer';
 import { searchTerm } from './LeaderboardReducer';
-import { userDataObject, portfolioQuotes } from '../reducers/PortfolioContainerReducers';
+import { userDataObject, portfolioQuotes, combinedStockCurrentValue } from '../reducers/PortfolioContainerReducers';
 import { stockSymbolToDisplay, stockDataObjectToDisplay } from './SearchResultsReducer';
 
 const rootReducer = combineReducers({
@@ -10,7 +10,8 @@ const rootReducer = combineReducers({
   searchTerm,
   stockSymbolToDisplay,
   stockDataObjectToDisplay,
-  portfolioQuotes
+  portfolioQuotes,
+  combinedStockCurrentValue
 });
 
 export default rootReducer;
