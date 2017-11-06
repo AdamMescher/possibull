@@ -4,9 +4,11 @@ import firebase from 'firebase';
 
 const Header = ({
   history,
-  setSearchTerm,
+  userID,
+  fetchUserData,
   fetchStockQuote,
-  setStockDataObjectToDisplay
+  setSearchTerm,
+  setStockDataObjectToDisplay,
 }) => {
   return(
     <header className='header-container'>
@@ -23,6 +25,7 @@ const Header = ({
             <button 
               className="header-nav-list-button"
               onClick={ () => {
+                fetchUserData( userID )
                 history.push(`/portfolio`)
               }}>
               portfolio 

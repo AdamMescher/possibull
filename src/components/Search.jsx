@@ -25,7 +25,6 @@ export default class Search extends Component {
              stock.name.toLowerCase().startsWith(this.state.search.toLowerCase())
       })
     if (filtered.length === 1 && filtered[0].symbol) {
-      console.log( filtered[0].symbol );
       this.props.fetchStockQuote( filtered[0].symbol );
       this.setState({ search: '' })
       this.props.history.push( `/stock` );

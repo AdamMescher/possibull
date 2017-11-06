@@ -6,6 +6,9 @@ import StockCard from '../components/StockCard';
 
 const SearchResults = ({
   history,
+  currentUserID,
+  fetchUserData,
+  fetchStockQuote,
   searchTerm,
   setSearchTerm,
   setStockDataObjectToDisplay,
@@ -28,6 +31,9 @@ const SearchResults = ({
     <div className='searchResults-container'>
       <Header 
         history={history}
+        userID={currentUserID}
+        fetchUserData={fetchUserData}
+        fetchStockQuote={fetchStockQuote}
         setSearchTerm={setSearchTerm.bind(this)}
         setStockDataObjectToDisplay={setStockDataObjectToDisplay.bind(this)} />
       <section className='searchResults-card-container'>
