@@ -6,8 +6,6 @@ import { fetchUserDataHelper } from '../utils/fetchHelpers';
 
 const mapStateToProps = store => ({
   currentUserID: store.currentUserID,
-  currentNetWorth: store.currentNetWorth,
-  currentPortfolio: store.currentPortfolio,
   userDataObject: store.userDataObject,
   userOwnedStocks: store.userOwnedStocks
 });
