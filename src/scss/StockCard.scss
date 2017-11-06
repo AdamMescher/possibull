@@ -1,14 +1,39 @@
+@import './variables.scss';
+
 .stockCard-container {
-  border: 2px solid black;
+  display: flex;
+  align-items: center;
+}
+
+.portfolio-card,
+.search-card {
   margin: 10px;
   padding: 10px;
   width: 300px;
+  height: 200px;
+  border: 2px $logo-primary solid;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.stockCard-container:hover{
-  background-color: red;
-  border: 2px solid red;
+.portfolio-card:hover,
+.search-card:hover {
+  background-color: $logo-primary;
+  border: 1px solid $logo-primary;
   color: white;
+  cursor: pointer;
+}
+
+.portfolio-card h3 {
+  margin-top: 10px;
+}
+
+.portfolio-card p {
+  margin-top: 6px;
+  font-family: 'Noto Serif', serif;
+  font-size: 17px;
 }
 
 .stockCard-title {
@@ -17,4 +42,8 @@
 
 .stockCard-name {
   width: 200px;
+}
+
+.search-card {
+  
 }

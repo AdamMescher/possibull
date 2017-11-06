@@ -158,16 +158,22 @@ class SingleStock extends Component {
         />
         <section className='ss-main'>
           <div>
-            <h3>{`SYMBOL: ${this.props.stockDataObjectToDisplay.symbol}`}</h3>
-            <p>{`NAME: ${this.props.stockDataObjectToDisplay.companyName}`}</p>
-            <p>{`PRICE: ${this.props.stockDataObjectToDisplay.latestPrice}`}</p>
-            <p>
-              {
-                `CHANGE: ${
-                  (this.props.stockDataObjectToDisplay.changePercent * 100)
-                    .toFixed(2) + ' %'}`
-              }
-            </p>
+            <div className='ss-stock-info'>
+              <h3 className='ss-stock-title'>{`${this.props.stockDataObjectToDisplay.symbol}`}</h3>
+              <p className='ss-stock-company-name'>{`${this.props.stockDataObjectToDisplay.companyName}`}</p>
+              <p className='ss-stock-price'>{`$${this.props.stockDataObjectToDisplay.latestPrice}`}</p>
+              <p className={
+                this.props.stockDataObjectToDisplay.changePercent > 0
+                ? 'green'
+                : 'red'
+              } >
+                {
+                  `${
+                    (this.props.stockDataObjectToDisplay.changePercent * 100)
+                      .toFixed(2) + ' %'}`
+                }
+              </p>
+            </div>
             <div className='ss-button-container'>
               <button
                 className='ss-button-buy'

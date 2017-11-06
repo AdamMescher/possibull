@@ -18,12 +18,13 @@
 .ss-button-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .ss-button-container button {
   background-color: white;
   color: black;
-  width: 100% ;
+  width: 50% ;
   height: 50px;
   margin-top: 15px;
 }
@@ -39,11 +40,16 @@
 
 .ss-num-shares-input {
   height: 50px;
-  width: 100%;
+  width: 30%;
   margin-top: 15px;
   text-align: center;
-  font-size: 20px;
+  font-size: 180px;
+  padding: 100px 0 100px 0;
   border: none;
+}
+
+.ss-num-shares-input::placeholder {
+  font-size: 40px;
 }
 
 .ss-button-sell {
@@ -53,4 +59,33 @@
 .ss-button-sell:hover {
   background-color: red;
   color: white;
+}
+
+.ss-stock-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.ss-stock-title {
+  font-size: 70px;
+}
+
+.ss-stock-company-name {
+  font-size: 24px;
+}
+
+.ss-stock-price {
+  font-size: 60px;
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
 }

@@ -31,6 +31,7 @@ const Portfolio = ({
   const generatePortfolioQuoteStockCards = quotes => {
     return quotes.map( quote => {
       return <StockCard
+        id='portfolio-card'
         key={quote.symbol}
         stock={quote}
         history={history}
@@ -55,20 +56,23 @@ const Portfolio = ({
           setStockDataObjectToDisplay.bind(this)
         }/>
       <section className='portfolio-main-container'>
-        <h3>Portfolio</h3>
-        <p>{`USER ID: ${currentUserID}`}</p>
-        <p>{`CASH: $${userDataObject.netWorth}`}</p>
-        <p>{`PORTFOLIO VALUE: $${combinedStockCurrentValue}`}</p>
-        <p>{`CASH + PORTFOLIO VALUE: $${userDataObject.netWorth + combinedStockCurrentValue}`}</p>
-        {
-          portfolioQuotes.length
-            ? generatePortfolioQuoteStockCards(portfolioQuotes)
-            : null
-        }
+        <article className='portfolio-numbers-container'>
+          <p className='pmc-cash'>{`cash: $${userDataObject.netWorth}`}</p>
+          <p className='pmc-portfolio-value' >{`portfolio value: $${combinedStockCurrentValue}`}</p>
+          <p className='pmc-total-value'>{`new worth: $${userDataObject.netWorth + combinedStockCurrentValue}`}</p>
+        </article>
+        <article className='stock-card-container'>
+          {
+            portfolioQuotes.length
+              ? generatePortfolioQuoteStockCards(portfolioQuotes)
+              : null
+          }
+        </article>
         <button
           className="ss-button-update-portfolio"
           onClick={() => {
-            fetchPortfolioQuotes(userDataObject.portfolio)
+            fetchPortfolioQuotes(userDataObject.portfolio);
+
           }}>
           UPDATE USER PORFOLIO
         </button>
