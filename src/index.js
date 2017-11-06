@@ -1,3 +1,4 @@
+import "babel-polyfill";
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -25,23 +26,23 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <div className='app'>
-        <Route 
-          exact path= '/'       
+        <Route
+          exact path= '/'
           component=  {App}                     />
-        <Route 
-          path=       '/login'        
+        <Route
+          path=       '/login'
           component=  {LoginContainer}          />
-        <Route 
-          path=       '/portfolio'    
+        <Route
+          path=       '/portfolio'
           component=  {PortfolioContainer}      />
-        <Route 
-          path=      '/leaderboard'  
+        <Route
+          path=      '/leaderboard'
           component=  {LeaderboardContainer}    />
-        <Route 
-          path=      '/search'       
+        <Route
+          path=      '/search'
           component=  {SearchResultsContainer}  />
-        <Route 
-          path=      '/stock'        
+        <Route
+          path=      '/stock'
           component=  {SingleStockContainer}    />
       </div>
     </Router>

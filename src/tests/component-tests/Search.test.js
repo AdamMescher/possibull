@@ -6,7 +6,15 @@ import { mount, configure } from 'enzyme';
 
 describe('SEARCH COMPONENT', () => {
   it('should render component', () => {
-    const wrapper = mount(<Search history={{ mock: 'history' }} />);
+    history.push = jest.fn();
+    const wrapper = mount(
+      <Search
+        history={jest.fn()}
+        setSearchTerm={jest.fn()}
+        setStockDataObjectToDisplay={jest.fn()}
+        fetchStockQuote={jest.fn()}
+      />
+    );
     expect(wrapper).toMatchSnapshot();
   });
 });

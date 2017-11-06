@@ -23,13 +23,19 @@ const mapDispatchToProps = dispatch => ({
   fetchStockQuote: symbol => dispatch( fetchStockQuote( symbol ) ),
   setUserData: userData => dispatch( userDataObject( userData ) ),
   setSearchTerm: term => dispatch( searchTerm( term ) ),
-  setStockDataObjectToDisplay: stockData => dispatch( stockDataObjectToDisplay( stockData ) ),
+  setStockDataObjectToDisplay: stockData => dispatch(
+    stockDataObjectToDisplay( stockData )
+  ),
   setUserOwnedStocks: stocks => dispatch( userOwnedStocks( stocks ) ),
-  fetchPortfolioQuotes: portfolio => dispatch( fetchPortfolioQuotesHelper( portfolio ) ),
-  addStockSymbolToDisplay: stockSymbol => dispatch(addStockSymbolToDisplay(stockSymbol)),
+  fetchPortfolioQuotes: portfolio => dispatch(
+    fetchPortfolioQuotesHelper( portfolio )
+  ),
+  addStockSymbolToDisplay: stockSymbol => dispatch(
+    addStockSymbolToDisplay(stockSymbol)
+  )
 });
 
 export default connect(
-  mapStateToProps, 
+  mapStateToProps,
   mapDispatchToProps
 )(Portfolio);
