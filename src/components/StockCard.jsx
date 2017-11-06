@@ -5,15 +5,17 @@ import PropTypes from 'prop-types';
 const StockCard = ({
   stock,
   history,
-  addStockSymbolToDisplay
+  addStockSymbolToDisplay,
+  setStockDataObjectToDisplay,
+  sharesOwned
 }) => {
 
   const generatePortfolioCard = stock => {
-    console.log('portfolio card');
     return(
       <div>
         <h3 className='stockCard-title'>{`${stock.symbol}`}</h3>
         <p className='stockCard-name' >{`${stock.companyName || stock.name}`}</p>
+        <p className='stockCard-name' >{`SHARES OWNED: ${sharesOwned}`}</p>
         <p className='stockCard-name' >{`${stock.sector}`}</p>
         <p className='stockCard-name' >{`${stock.latestPrice}`}</p>
         <p className='stockCard-name' >{`${(stock.changePercent * 100).toFixed(2)}%`}</p>
@@ -23,7 +25,6 @@ const StockCard = ({
   }
 
   const generateSearchCard = stock => {
-    console.log('search card');
     return(
       <div>
         <h3 className='stockCard-title'>{`${stock.symbol}`}</h3>
@@ -33,19 +34,19 @@ const StockCard = ({
   }
 
   const stockCard = stock.change
-  ? generatePortfolioCard(stock)
-  : generateSearchCard(stock)
+  ? generatePortfolioCard( stock )
+  : generateSearchCard( stock )
 
   return(
     <div 
       className='stockCard-container' 
       onClick={
         () => {
-          addStockSymbolToDisplay(stock.symbol);
-          history.push('/stock')
+          addStockSymbolToDisplay( stock.symbol );
+          history.push( '/stock' )
         }
     }>
-      {stockCard}
+      { stockCard }
     </div>
   )
 }

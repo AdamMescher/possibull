@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import Header from './Header';
 import iexURL from '../utils/iexURL';
 import fire from 'firebase';
+import { 
+  checkAvailableFunds, 
+  checkNumberOfShares, 
+  generateNewPortfolio,
+  generateNewNetWorth,
+  setFirebaseObject,
+  generateUpdatedUserObject } from '../utils/buyingAndSellingHelpers';
 
 class SingleStock extends Component {
   constructor(props){
@@ -12,9 +19,6 @@ class SingleStock extends Component {
   }
 
   componentDidMount(){
-    if (!this.props.stockSymbolToDisplay){
-      console.log('no symbol');
-    }
     this.props.fetchStockQuote( this.props.stockSymbolToDisplay )
   }
 
@@ -25,145 +29,74 @@ class SingleStock extends Component {
     cost: (this.state.numberOfShares * stock.latestPrice).toFixed(2)
   });
 
-  generateUpdatedUserObject = (userID, portfolio, netWorth) => {
-    this.props.setUserDataObject({
-      id: userID,
-      portfolio: portfolio,
-      netWorth: netWorth.toFixed(2)
-    })
-  }
-
-  checkAvailableFunds = (cost, netWorth) => {
-    return netWorth >= cost
-  }
-
-  checkNumberOfShares = (numberOwned, attemptedSale) => {
-    return numberOwned >= attemptedSale
-  }
-
-  sendUserObjectToFirebase = userObject => {
-    fire.database().ref(`users/${this.props.currentUserID}`).set({
-      userObject
-    })
+  updateObjectStores = (id, userObject) => {
+    setFirebaseObject(id, userObject);
+    this.props.setUserDataObject(userObject);
   }
 
   createNewEntryInPortfolio = transactionData => {
-    if( this.checkAvailableFunds( transactionData.cost, this.props.userDataObject.netWorth ) ) { 
-      this.props.setUserDataObject({
-        id: this.props.currentUserID,
-        portfolio: {
-          ...this.props.userDataObject.portfolio,
-          [this.props.stockDataObjectToDisplay.symbol]:
-          {
-            symbol: this.props.stockDataObjectToDisplay.symbol,
-            numberOfShares: parseInt(transactionData.numberOfShares)
-          }
-        },
-        netWorth: (this.props.userDataObject.netWorth - transactionData.cost).toFixed(2)
-      })
-      
-      fire.database().ref(`users/${this.props.currentUserID}`).set({
-        id: this.props.currentUserID,
-        portfolio: {
-          ...this.props.userDataObject.portfolio,
-          [this.props.stockDataObjectToDisplay.symbol]:
-          {
-            symbol: this.props.stockDataObjectToDisplay.symbol,
-            numberOfShares: parseInt(transactionData.numberOfShares)
-          }
-        },
-        netWorth: (this.props.userDataObject.netWorth - transactionData.cost).toFixed(2)
-      })
+    if ( checkAvailableFunds( transactionData.cost, this.props.userDataObject.netWorth ) ) {
+      const updatedUserObject = generateUpdatedUserObject(
+        this.props.currentUserID,
+        generateNewPortfolio(
+          'buy',
+          this.props.userDataObject.portfolio,
+          this.props.stockDataObjectToDisplay.symbol,
+          parseInt(transactionData.numberOfShares)
+        ),
+        generateNewNetWorth(
+          this.props.userDataObject.netWorth,
+          transactionData.cost,
+          'buy'
+        )
+      );
+      this.updateObjectStores( this.props.currentUserID, updatedUserObject )
+    } else {
+      alert(`You don't have enough money to do that`)
+    } 
+  }
 
+  buyUpdateExistingEntryInPortfolio = transactionData => {
+    if (checkAvailableFunds(transactionData.cost, parseInt(this.props.userDataObject.netWorth)) ){
+      const updatedUserObject = generateUpdatedUserObject(
+        this.props.currentUserID,
+        generateNewPortfolio(
+          'buy',
+          this.props.userDataObject.portfolio,
+          this.props.stockDataObjectToDisplay.symbol,
+          parseInt(transactionData.numberOfShares),
+          this.props.userDataObject.portfolio[this.props.stockDataObjectToDisplay.symbol].numberOfShares
+        ),
+        generateNewNetWorth(
+          this.props.userDataObject.netWorth,
+          transactionData.cost,
+          'buy'
+        )
+      )
+      this.updateObjectStores(this.props.currentUserID, updatedUserObject)
     } else {
       alert(`you don't have enough money to do that`)
     }
   }
 
-  buyUpdateExistingEntryInPortfolio = transactionData => {
-    if (this.checkAvailableFunds(transactionData.cost, this.props.userDataObject.netWorth) ){
-      this.props.setUserDataObject({
-        id: this.props.currentUserID,
-        portfolio: {
-          ...this.props.userDataObject.portfolio,
-          [this.props.stockDataObjectToDisplay.symbol]: {
-            symbol: this.props.stockDataObjectToDisplay.symbol,
-            numberOfShares: 
-              parseInt(this.state.numberOfShares) 
-              + parseInt(this.props.userDataObject.portfolio[this.props.stockDataObjectToDisplay.symbol].numberOfShares)
-          }
-        },
-        netWorth: (this.props.userDataObject.netWorth - transactionData.cost.toFixed(2))
-      })
-
-      fire.database().ref(`users/${this.props.currentUserID}`).set({
-        id: this.props.currentUserID,
-        portfolio: {
-          ...this.props.userDataObject.portfolio,
-          [this.props.stockDataObjectToDisplay.symbol]:
-          {
-            symbol: this.props.stockDataObjectToDisplay.symbol,
-            numberOfShares: 
-              parseInt(transactionData.numberOfShares) 
-              + parseInt(this.props.userDataObject.portfolio[this.props.stockDataObjectToDisplay.symbol].numberOfShares)
-          }
-        },
-        netWorth: (this.props.userDataObject.netWorth - transactionData.cost.toFixed(2))
-      })
-    }
-    else {
-      alert(`you don't have enough money to do that`)
-    }
-  }
-
   sellUpdateExistingEntryInPortfolio = transactionData => {
-    if (this.checkNumberOfShares(this.props.userDataObject.portfolio[transactionData.symbol].numberOfShares, transactionData.numberOfShares ) ){
-      this.props.setUserDataObject({
-        id: this.props.currentUserID,
-        portfolio: {
-          ...this.props.userDataObject.portfolio,
-          [this.props.stockDataObjectToDisplay.symbol]: {
-            symbol: this.props.stockDataObjectToDisplay.symbol,
-            numberOfShares: 
-              parseInt(this.props.userDataObject.portfolio[this.props.stockDataObjectToDisplay.symbol].numberOfShares) 
-              - parseInt(this.state.numberOfShares)
-          }
-        },
-        netWorth: (this.props.userDataObject.netWorth + transactionData.cost).toFixed(2)
-      })
- 
-      if (
-        parseInt(this.props.userDataObject.portfolio[this.props.stockDataObjectToDisplay.symbol].numberOfShares) - 
-        parseInt(this.state.numberOfShares) > 0 
-      ) {
-          fire.database().ref(`users/${this.props.currentUserID}`).set({
-            id: this.props.currentUserID,
-            portfolio: {
-              ...this.props.userDataObject.portfolio,
-              [this.props.stockDataObjectToDisplay.symbol]: {
-                symbol: this.props.stockDataObjectToDisplay.symbol,
-                numberOfShares: 
-                  parseInt(this.props.userDataObject.portfolio[this.props.stockDataObjectToDisplay.symbol].numberOfShares) - 
-                  parseInt(this.state.numberOfShares)
-              }
-            },
-            netWorth: (this.props.userDataObject.netWorth + transactionData.cost).toFixed(2)
-          })
-      } else {
-        fire.database().ref(`users/${this.props.currentUserID}`).set({
-          id: this.props.currentUserID,
-          portfolio: {
-            ...this.props.userDataObject.portfolio,
-            [this.props.stockDataObjectToDisplay.symbol]: {
-              symbol: this.props.stockDataObjectToDisplay.symbol,
-              numberOfShares: 
-                parseInt(this.props.userDataObject.portfolio[this.props.stockDataObjectToDisplay.symbol].numberOfShares) - 
-                parseInt(this.state.numberOfShares)
-            }
-          },
-          netWorth: (this.props.userDataObject.netWorth + transactionData.cost).toFixed(2)
-        })
-      }
+    if ( checkNumberOfShares( this.props.userDataObject.portfolio[transactionData.symbol].numberOfShares, transactionData.numberOfShares )){
+      const updatedUserObject = generateUpdatedUserObject(
+        this.props.currentUserID,
+        generateNewPortfolio(
+          'sell',
+          this.props.userDataObject.portfolio,
+          this.props.stockDataObjectToDisplay.symbol,
+          parseInt(transactionData.numberOfShares),
+          this.props.userDataObject.portfolio[this.props.stockDataObjectToDisplay.symbol].numberOfShares
+        ),
+        generateNewNetWorth(
+          this.props.userDataObject.netWorth,
+          transactionData.cost,
+          'sell'
+        )
+      )
+      this.updateObjectStores(this.props.currentUserID, updatedUserObject)
     } else {
       alert(`you don't have that many shares to sell`)
     }
@@ -171,11 +104,11 @@ class SingleStock extends Component {
 
   handleBuyButtonClick = () => {
     !this.props.userDataObject.portfolio || 
-     this.props.userDataObject.portfolio[this.props.stockDataObjectToDisplay.symbol]
+    !this.props.userDataObject.portfolio[this.props.stockDataObjectToDisplay.symbol]
       ? this.createNewEntryInPortfolio(
           this.generateStockPurchaseData( this.props.stockDataObjectToDisplay )
         )
-      : this.createNewEntryInPortfolio(
+      : this.buyUpdateExistingEntryInPortfolio(
           this.generateStockPurchaseData( this.props.stockDataObjectToDisplay )
         )
   }

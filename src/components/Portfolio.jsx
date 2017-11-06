@@ -15,7 +15,8 @@ class Portfolio extends Component {
         stock={quote} 
         history={this.props.history}
         addStockSymbolToDisplay={this.props.addStockSymbolToDisplay} 
-        setStockDataObjectToDisplay={this.props.setStockDataObjectToDisplay} 
+        setStockDataObjectToDisplay={this.props.setStockDataObjectToDisplay}
+        sharesOwned={this.props.userDataObject.portfolio[quote.symbol].numberOfShares}
       />
     })
   }
