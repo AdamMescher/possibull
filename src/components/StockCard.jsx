@@ -10,25 +10,24 @@ const StockCard = ({
 }) => {
   const generatePortfolioCard = stock => {
     return (
-      <div>
+      <div className='portfolio-card'>
         <h3 className='stockCard-title'>{`${stock.symbol}`}</h3>
         <p className='stockCard-name' >
           {`${stock.companyName || stock.name}`}
         </p>
         <p className='stockCard-name' >{`shares owned: ${sharesOwned}`}</p>
-        <p className='stockCard-name' >{`sector: ${stock.sector}`}</p>
-        <p className='stockCard-name' >{`price: ${stock.latestPrice}`}</p>
+        <p className='stockCard-name' >{`price: $${stock.latestPrice}`}</p>
         <p className='stockCard-name' >
           {`% change: ${(stock.changePercent * 100).toFixed(2)}%`}
         </p>
-        <p className='stockCard-name' >{`mkt cap: ${ (stock.marketCap / 1000000).toFixed(2) } Billion`}</p>
+        <p className='stockCard-name' >{`mkt cap: $${ (stock.marketCap / 1000000000).toFixed(2) } Billion`}</p>
       </div>
     );
   };
 
   const generateSearchCard = stock => {
     return (
-      <div>
+      <div className='search-card'>
         <h3 className='stockCard-title'>{`${stock.symbol}`}</h3>
         <p className='stockCard-name' >
           {`${stock.companyName || stock.name}`}

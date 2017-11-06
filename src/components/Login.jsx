@@ -109,14 +109,14 @@ export default class Login extends Component {
               placeholder='veryify password'
               onChange={this.handleChange.bind(this, 'verifyPassword')} />
             <input
-              className='input-login-button uppercase'
+              className='input-login-button'
               type='submit'
-              value='log in'
+              value='Log In'
               onClick={ this.handleLogin.bind(this) } />
             <input
-              className='input-signup-button uppercase'
+              className='input-signup-button'
               type='submit'
-              value='sign up'
+              value='Sign Up'
               onClick={ this.handleSignUp.bind(this) } />
           </form>
         </section>
