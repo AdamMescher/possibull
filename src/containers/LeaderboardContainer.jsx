@@ -12,8 +12,9 @@ const mapStateToProps = store => ({
 
 const mapDispatchToProps = dispatch => ({
   setSearchTerm: term => dispatch( searchTerm( term ) ),
-  fetchStockQuote: symbol => dispatch( fetchStockQuote(symbol) ), 
-  setStockDataObjectToDisplay: stockData => dispatch(stockDataObjectToDisplay(stockData)),
+  fetchStockQuote: symbol => dispatch( fetchStockQuote(symbol) ),
+  setStockDataObjectToDisplay:
+    stockData => dispatch( stockDataObjectToDisplay( stockData ) ),
   fetchUserData: userID => fetchUserDataHelper(userID)
 });
 

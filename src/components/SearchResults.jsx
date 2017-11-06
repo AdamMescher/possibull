@@ -1,8 +1,8 @@
 import React from 'react';
-import Header from '../components/Header';
 import { symbols } from '../utils/symbols';
+import Header from '../components/Header';
 import StockCard from '../components/StockCard';
-
+import PropTypes from 'prop-types';
 
 const SearchResults = ({
   history,
@@ -15,21 +15,22 @@ const SearchResults = ({
   addStockSymbolToDisplay
 }) => {
   const matchingStocks = symbols.filter( stock => {
-    return stock.symbol.toLowerCase().includes(searchTerm.toLowerCase()) || stock.name.toLowerCase().includes(searchTerm.toLowerCase())
+    return stock.symbol.toLowerCase().includes(searchTerm.toLowerCase()) ||
+           stock.name.toLowerCase().includes(searchTerm.toLowerCase());
   });
 
   const mappedMatchingStock = matchingStocks.map( stock => {
-      return <StockCard 
-                key={stock.symbol}
-                stock={stock} 
-                history={history} 
-                addStockSymbolToDisplay={addStockSymbolToDisplay} 
-                setStockDataObjectToDisplay={setStockDataObjectToDisplay.bind(this)}/>
-    }   )  
+    return <StockCard
+      key={stock.symbol}
+      stock={stock}
+      history={history}
+      addStockSymbolToDisplay={addStockSymbolToDisplay}
+      setStockDataObjectToDisplay={setStockDataObjectToDisplay.bind(this)}/>;
+  });
 
-  return(
+  return (
     <div className='searchResults-container'>
-      <Header 
+      <Header
         history={history}
         userID={currentUserID}
         fetchUserData={fetchUserData}
@@ -40,7 +41,18 @@ const SearchResults = ({
         {mappedMatchingStock}
       </section>
     </div>
-  )
-}
+  );
+};
+
+SearchResults.propTypes = {
+  history: PropTypes.object,
+  currentUserID: PropTypes.string,
+  fetchUserData: PropTypes.func,
+  fetchStockQuote: PropTypes.func,
+  searchTerm: PropTypes.string,
+  setSearchTerm: PropTypes.func,
+  setStockDataObjectToDisplay: PropTypes.func,
+  addStockSymbolToDisplay: PropTypes.func
+};
 
 export default SearchResults;

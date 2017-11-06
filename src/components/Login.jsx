@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import fire from '../utils/fire';
+import PropTypes from 'prop-types';
 
 export default class Login extends Component {
-  constructor(props){
-    super(props);
+  constructor( props ){
+    super( props );
     this.state = {
       email: '',
       password: '',
@@ -11,10 +12,10 @@ export default class Login extends Component {
       errorCode: '',
       errorMessage: ''
     };
-    this.handleLogin.bind(this);
+    this.handleLogin.bind( this );
   }
 
-  handleChange(key, event){
+  handleChange( key, event ){
     this.setState({
       [key]: event.target.value
     });
@@ -23,15 +24,16 @@ export default class Login extends Component {
   handleLogin(event) {
     event.preventDefault();
 
-    fire.auth().signInWithEmailAndPassword( this.state.email, this.state.password )
-      .catch(function (error) {
-        alert(error.message)
-      });
+    fire.auth().signInWithEmailAndPassword(
+      this.state.email, this.state.password
+    ).catch( function( error ) {
+      alert( error.message );
+    });
 
     fire.auth().onAuthStateChanged( user => {
-      if (user) {
-        this.props.setCurrentUserID( user.uid ); 
-        this.props.fetchUserData( user.uid );       
+      if ( user ) {
+        this.props.setCurrentUserID( user.uid );
+        this.props.fetchUserData( user.uid );
         this.props.history.push( `/portfolio` );
       }
     });
@@ -41,15 +43,16 @@ export default class Login extends Component {
     event.preventDefault();
 
     if (this.state.password !== this.state.verifyPassword) {
-      alert('Passwords do not match')
+      alert('Passwords do not match');
     }
 
-    fire.auth().createUserWithEmailAndPassword( this.state.email, this.state.password )
-      .catch( function( error ) {
-        alert( error.message )
-      });
+    fire.auth().createUserWithEmailAndPassword(
+      this.state.email, this.state.password
+    ).catch( function( error ) {
+      alert( error.message );
+    });
 
-    fire.auth().onAuthStateChanged( (user) => {
+    fire.auth().onAuthStateChanged( user => {
       if ( user ) {
         fire.database().ref( `users/${user.uid}` ).set({
           id: user.uid,
@@ -57,11 +60,11 @@ export default class Login extends Component {
           netWorth: 1000000
         });
         this.props.setCurrentUserID( user.uid );
-        this.props.fetchUserData( user.uid );    
+        this.props.fetchUserData( user.uid );
         this.props.history.push( `/portfolio/` );
       }
     });
-  };
+  }
 
   writeUserData(user){
     fire.database().ref( `users/${user.uid}` ).set({
@@ -88,7 +91,7 @@ export default class Login extends Component {
         <section className='login-form-container'>
           <form className='login-form'>
             <h1>POSSIBULL</h1>
-            <input 
+            <input
               className='input-email'
               type='email'
               placeholder='email'
@@ -105,10 +108,10 @@ export default class Login extends Component {
               onChange={this.handleChange.bind(this, 'verifyPassword')} />
             <input
               className='input-login-button uppercase'
-              type='submit' 
+              type='submit'
               value='log in'
               onClick={ this.handleLogin.bind(this) } />
-            <input 
+            <input
               className='input-signup-button uppercase'
               type='submit'
               value='sign up'
@@ -119,3 +122,13 @@ export default class Login extends Component {
     );
   }
 }
+
+Login.propTypes = {
+  currentUserID: PropTypes.string,
+  fetchUserData: PropTypes.func,
+  history: PropTypes.object,
+  setCurrentUserID: PropTypes.func,
+  setUserOwnedStocks: PropTypes.func,
+  userDataObject: PropTypes.object,
+  userOwnedStocks: PropTypes.array
+};

@@ -4,50 +4,55 @@ import StockCard from '../components/StockCard';
 import PropTypes from 'prop-types';
 
 class Portfolio extends Component {
-  
+
   generatePortfolioQuoteStockCards = quotes => {
     return quotes.map( quote => {
       return <StockCard
-        key={quote.symbol} 
-        stock={quote} 
+        key={quote.symbol}
+        stock={quote}
         history={this.props.history}
-        addStockSymbolToDisplay={this.props.addStockSymbolToDisplay} 
+        addStockSymbolToDisplay={this.props.addStockSymbolToDisplay}
         setStockDataObjectToDisplay={this.props.setStockDataObjectToDisplay}
-        sharesOwned={this.props.userDataObject.portfolio[quote.symbol].numberOfShares}
-      />
-    })
+        sharesOwned={
+          this.props.userDataObject.portfolio[quote.symbol].numberOfShares
+        }
+      />;
+    });
   }
-  
+
   render(){
     if ( !this.props.portfolioQuotes.length && this.props.userDataObject ) {
-      this.props.fetchPortfolioQuotes( this.props.userDataObject.portfolio )
+      this.props.fetchPortfolioQuotes( this.props.userDataObject.portfolio );
     }
-    
-    return (    
+
+    return (
       <div className='portfolio-container'>
-        <Header 
+        <Header
           history={this.props.history}
           userID={this.props.currentUserID}
           fetchUserData={this.props.fetchUserData}
           fetchStockQuote={this.props.fetchStockQuote.bind(this)}
-          setSearchTerm={this.props.setSearchTerm.bind(this)} 
-          setStockDataObjectToDisplay={this.props.setStockDataObjectToDisplay.bind(this)} 
-          />
+          setSearchTerm={this.props.setSearchTerm.bind(this)}
+          setStockDataObjectToDisplay={
+            this.props.setStockDataObjectToDisplay.bind(this)
+          }/>
         <section className='portfolio-main-container'>
           <h3>Portfolio</h3>
           <p>{`USER ID: ${this.props.currentUserID}`}</p>
           <p>{`CASH: $${this.props.userDataObject.netWorth}`}</p>
-          <p>{`PORTFOLIO CURRENT VALUE: $${this.props.combinedStockCurrentValue}`}</p>
-          { 
+          <p>{`PORTFOLIO VALUE: $${this.props.combinedStockCurrentValue}`}</p>
+          {
             this.props.portfolioQuotes.length
-            ? this.generatePortfolioQuoteStockCards( this.props.portfolioQuotes )
-            : null
+              ? this.generatePortfolioQuoteStockCards(
+                this.props.portfolioQuotes
+              )
+              : null
           }
         </section>
       </div>
     );
-  };
-};
+  }
+}
 
 Portfolio.propTypes = {
   addStockSymbolToDisplay: PropTypes.func,
@@ -66,7 +71,6 @@ Portfolio.propTypes = {
   stockSymbolToDisplay: PropTypes.string,
   userDataObject: PropTypes.object,
   userOwnedStocks: PropTypes.array
-}
+};
 
 export default Portfolio;
-
