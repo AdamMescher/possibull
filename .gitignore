@@ -33,4 +33,4 @@ quandlApiKey.js
 
 
 ## SNAPSHOTS
-src/tests/component-tests/__snapshots__
+src/tests/component-tests/__snapshots__/*
