@@ -113,7 +113,6 @@ export default class Login extends Component {
               type='submit'
               value='sign up'
               onClick={ this.handleSignUp.bind(this) } />
-            {this.generateErrorMessage}
           </form>
         </section>
       </div>

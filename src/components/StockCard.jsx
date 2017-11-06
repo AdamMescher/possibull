@@ -52,7 +52,7 @@ const StockCard = ({
 
 StockCard.propTypes = {
   stock: PropTypes.object,
-  history: PropTypes.func,
+  history: PropTypes.object,
   addStockSymbolToDisplay: PropTypes.func
 }
 
