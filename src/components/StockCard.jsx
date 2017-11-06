@@ -8,7 +8,6 @@ const StockCard = ({
   setStockDataObjectToDisplay,
   sharesOwned
 }) => {
-
   const generatePortfolioCard = stock => {
     return(
       <div>
@@ -53,7 +52,9 @@ const StockCard = ({
 StockCard.propTypes = {
   stock: PropTypes.object,
   history: PropTypes.object,
-  addStockSymbolToDisplay: PropTypes.func
+  addStockSymbolToDisplay: PropTypes.func,
+  setStockDataObjectToDisplay: PropTypes.func,
+  sharesOwned: PropTypes.number
 }
 
 export default StockCard;
