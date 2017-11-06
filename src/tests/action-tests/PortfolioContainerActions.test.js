@@ -6,7 +6,7 @@ import {
 
 describe( 'PORTFOLIO CONTAINER ACTIONS', () => {
 
-  it( `should return an array of user owned stocks`, () => {
+  it( `should return an array of user owned stocks action`, () => {
     const mockUserOwnedStocks = [
       {symbol: 'TSLA', numberOfShares: 5},
       {symbol: 'NFLX', numberOfShares: 10}
@@ -20,7 +20,7 @@ describe( 'PORTFOLIO CONTAINER ACTIONS', () => {
     expect(expectation).toEqual(expected);
   });
 
-  it( `should return user data object`, () => {
+  it( `should return user data object action`, () => {
     const mockUserData = {
       id: 'GUIbv12tEmVTLQyDFZdkinbxp642',
       netWorth: 1000000,
@@ -35,7 +35,7 @@ describe( 'PORTFOLIO CONTAINER ACTIONS', () => {
     expect(expectation).toEqual(expected);
   });
 
-  it( `should return array of stock portfolio quote objects`, () => {
+  it( `should return array of stock portfolio quote objects action`, () => {
     const mockPortfolioQuotes = [
       {
         symbol: 'TSLA',
@@ -61,7 +61,7 @@ describe( 'PORTFOLIO CONTAINER ACTIONS', () => {
     expect(expectation).toEqual(expected);
   });
 
-  it( `should return the current value of all stocks in portfolio`, () => {
+  it( `should return current value of all stocks in portfolio action`, () => {
 
     const mockStocksValue = 15783.43;
     const expected = {
