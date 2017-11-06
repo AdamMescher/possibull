@@ -5,8 +5,8 @@ export default class Login extends Component {
   constructor(props){
     super(props);
     this.state = {
-      email: 'a@a.com',
-      password: 'aaaaaa',
+      email: '',
+      password: '',
       verifyPassword: '',
       errorCode: '',
       errorMessage: ''
@@ -23,17 +23,15 @@ export default class Login extends Component {
   handleLogin(event) {
     event.preventDefault();
 
-    fire.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+    fire.auth().signInWithEmailAndPassword( this.state.email, this.state.password )
       .catch(function (error) {
-        console.log('ERROR');
-        console.log('CODE: ', error.code);
-        console.log('MESSAGE: ', error.message);
+        alert(error.message)
       });
 
     fire.auth().onAuthStateChanged( user => {
       if (user) {
         this.props.setCurrentUserID( user.uid ); 
-        this.props.fetchUserData(user.uid);       
+        this.props.fetchUserData( user.uid );       
         this.props.history.push( `/portfolio` );
       }
     });
@@ -42,29 +40,27 @@ export default class Login extends Component {
   handleSignUp(event){
     event.preventDefault();
 
-    fire.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-      .catch(function (error) {
-        console.log('ERROR');
-        console.log('CODE: ', error.code);
-        console.log('MESSAGE: ', error.message);
+    fire.auth().createUserWithEmailAndPassword( this.state.email, this.state.password )
+      .catch( function( error ) {
+        alert( error.message )
       });
 
     fire.auth().onAuthStateChanged( (user) => {
-      if (user) {
-        fire.database().ref(`users/${user.uid}`).set({
+      if ( user ) {
+        fire.database().ref( `users/${user.uid}` ).set({
           id: user.uid,
           portfolio: [],
           netWorth: 1000000
         });
-        this.props.setCurrentUserID(user.uid);
-        this.props.fetchUserData(user.uid);    
-        this.props.history.push(`/portfolio/`);
+        this.props.setCurrentUserID( user.uid );
+        this.props.fetchUserData( user.uid );    
+        this.props.history.push( `/portfolio/` );
       }
     });
   };
 
   writeUserData(user){
-    fire.database().ref(`users/${user.uid}`).set({
+    fire.database().ref( `users/${user.uid}` ).set({
       id: user.uid,
       portfolio: [],
       netWorth: 100000
@@ -89,17 +85,17 @@ export default class Login extends Component {
           <form className='login-form'>
             <h1>POSSIBULL</h1>
             <input 
-              className='input-email uppercase'
+              className='input-email'
               type='email'
               placeholder='email'
               onChange={this.handleChange.bind(this, 'email')} />
             <input
-              className='input-password uppercase'
+              className='input-password'
               type='password'
               placeholder='password'
               onChange={this.handleChange.bind(this, 'password')} />
             <input
-              className='input-verify-password uppercase'
+              className='input-verify-password'
               type='password'
               placeholder='veryify password'
               onChange={this.handleChange.bind(this, 'verifyPassword')} />
