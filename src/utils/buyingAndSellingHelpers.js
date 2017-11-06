@@ -8,7 +8,13 @@ export const checkNumberOfShares = ( numberOwned, attemptedSale ) => {
   return numberOwned >= attemptedSale;
 };
 
-export const generateNewPortfolio = ( type, currentPortfolio, stockSymbol, purchasedShares, previouslyOwnedShares = 0 ) => {
+export const generateNewPortfolio = (
+  type,
+  currentPortfolio,
+  stockSymbol,
+  purchasedShares,
+  previouslyOwnedShares = 0
+) => {
   return type === 'buy'
     ? {
       ...currentPortfolio,
@@ -25,13 +31,13 @@ export const generateNewPortfolio = ( type, currentPortfolio, stockSymbol, purch
         symbol: stockSymbol,
         numberOfShares: previouslyOwnedShares - purchasedShares
       }
-    }
+    };
 };
 
 export const generateNewNetWorth = ( currentNetWorth, cost, type ) => {
   return type === 'buy'
     ? (parseInt( currentNetWorth, 10 ) - parseInt( cost, 10 )).toFixed(2)
-    : (parseInt( currentNetWorth, 10 ) + parseInt( cost, 10 )).toFixed(2)
+    : (parseInt( currentNetWorth, 10 ) + parseInt( cost, 10 )).toFixed(2);
 };
 
 export const generateUpdatedUserObject = (id, portfolio, netWorth) => ({
@@ -45,6 +51,3 @@ export const setFirebaseObject = ( userID, updatedUserData ) => {
     [`${userID}`]: updatedUserData
   });
 };
-
-
-

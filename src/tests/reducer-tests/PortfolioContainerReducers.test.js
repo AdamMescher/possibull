@@ -9,7 +9,7 @@ describe( `PORTFOLIO REDUCER`, () => {
     ];
     const action = {
       type: 'SET_USER_OWNED_STOCKS_ARRAY',
-      userStocksArr: []
+      userStocksArr: mockUserStocksArr
     };
     const expectation = action.userStocksArr;
     expect(
@@ -54,7 +54,7 @@ describe( `PORTFOLIO REDUCER`, () => {
       types: 'SET_PORTFOLIO_QUOTES',
       portfolioQuotes: mockQuotes
     };
-    const expectation = action.portfolioQuoteswa;
+    const expectation = action.portfolioQuotes;
     expect(
       reducers.portfolioQuotes(mockQuotes, action)
     ).toEqual(expectation);
