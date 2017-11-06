@@ -73,7 +73,7 @@
   align-items: center;
   height: 90%;
   width: 100%;
-  margin-top: 50px;
+  margin-top: -75px;
   overflow-y: hidden; }
 
 .ss-button-container {
@@ -137,11 +137,6 @@
 .green {
   color: green; }
 
-.ss-button-portfolio-update {
-  color: black;
-  height: 200px;
-  width: 150px; }
-
 .search-container {
   display: flex;
   align-items: center; }
@@ -153,7 +148,7 @@
   font-size: 20px;
   border: 1px #0A81D1 solid;
   border-radius: 4px;
-  z-index: 100; }
+  z-index: 10; }
 
 .search-button {
   background-color: teal;
@@ -164,7 +159,8 @@
   background: url("http://localhost:3000/src/assets/icons/icon-search-electricblue.svg");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 10px 10px; }
+  background-size: 10px 10px;
+  z-index: 11; }
 
 .header-container {
   display: flex;
