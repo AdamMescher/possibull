@@ -15,13 +15,13 @@ const StockCard = ({
         <p className='stockCard-name' >
           {`${stock.companyName || stock.name}`}
         </p>
-        <p className='stockCard-name' >{`SHARES OWNED: ${sharesOwned}`}</p>
-        <p className='stockCard-name' >{`${stock.sector}`}</p>
-        <p className='stockCard-name' >{`${stock.latestPrice}`}</p>
+        <p className='stockCard-name' >{`shares owned: ${sharesOwned}`}</p>
+        <p className='stockCard-name' >{`sector: ${stock.sector}`}</p>
+        <p className='stockCard-name' >{`price: ${stock.latestPrice}`}</p>
         <p className='stockCard-name' >
-          {`${(stock.changePercent * 100).toFixed(2)}%`}
+          {`% change: ${(stock.changePercent * 100).toFixed(2)}%`}
         </p>
-        <p className='stockCard-name' >{`${stock.marketCap}`}</p>
+        <p className='stockCard-name' >{`mkt cap: ${ (stock.marketCap / 1000000).toFixed(2) } Billion`}</p>
       </div>
     );
   };

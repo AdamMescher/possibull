@@ -1,58 +1,80 @@
 import "babel-polyfill";
-import React, { Component } from 'react';
+import React from 'react';
 import Header from './Header';
 import StockCard from '../components/StockCard';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 
-class Portfolio extends Component {
+const Portfolio = ({
+  addStockSymbolToDisplay,
+  combinedStockCurrentValue,
+  currentUserID,
+  fetchPortfolioQuotes,
+  fetchStockQuote,
+  fetchUserData,
+  history,
+  portfolioQuotes,
+  searchTerm,
+  setSearchTerm,
+  setStockDataObjectToDisplay,
+  setUserData,
+  setUserOwnedStocks,
+  stockSymbolToDisplay,
+  userDataObject,
+  userOwnedStocks
+}) => {
 
-  generatePortfolioQuoteStockCards = quotes => {
+  if (!portfolioQuotes.length && userDataObject) {
+    fetchPortfolioQuotes(userDataObject.portfolio);
+  }
+
+  const generatePortfolioQuoteStockCards = quotes => {
     return quotes.map( quote => {
       return <StockCard
         key={quote.symbol}
         stock={quote}
-        history={this.props.history}
-        addStockSymbolToDisplay={this.props.addStockSymbolToDisplay}
-        setStockDataObjectToDisplay={this.props.setStockDataObjectToDisplay}
+        history={history}
+        addStockSymbolToDisplay={addStockSymbolToDisplay}
+        setStockDataObjectToDisplay={setStockDataObjectToDisplay}
         sharesOwned={
-          this.props.userDataObject.portfolio[quote.symbol].numberOfShares
+          userDataObject.portfolio[quote.symbol].numberOfShares
         }
       />;
     });
   }
 
-  render(){
-    if ( !this.props.portfolioQuotes.length && this.props.userDataObject ) {
-      this.props.fetchPortfolioQuotes( this.props.userDataObject.portfolio );
-    }
-
-    return (
-      <div className='portfolio-container'>
-        <Header
-          history={this.props.history}
-          userID={this.props.currentUserID}
-          fetchUserData={this.props.fetchUserData}
-          fetchStockQuote={this.props.fetchStockQuote.bind(this)}
-          setSearchTerm={this.props.setSearchTerm.bind(this)}
-          setStockDataObjectToDisplay={
-            this.props.setStockDataObjectToDisplay.bind(this)
-          }/>
-        <section className='portfolio-main-container'>
-          <h3>Portfolio</h3>
-          <p>{`USER ID: ${this.props.currentUserID}`}</p>
-          <p>{`CASH: $${this.props.userDataObject.netWorth}`}</p>
-          <p>{`PORTFOLIO VALUE: $${this.props.combinedStockCurrentValue}`}</p>
-          {
-            this.props.portfolioQuotes.length
-              ? this.generatePortfolioQuoteStockCards(
-                this.props.portfolioQuotes
-              )
-              : null
-          }
-        </section>
-      </div>
-    );
-  }
+  return (
+    <div className='portfolio-container'>
+      <Header
+        history={history}
+        userID={currentUserID}
+        fetchUserData={fetchUserData}
+        fetchStockQuote={fetchStockQuote.bind(this)}
+        setSearchTerm={setSearchTerm.bind(this)}
+        setStockDataObjectToDisplay={
+          setStockDataObjectToDisplay.bind(this)
+        }/>
+      <section className='portfolio-main-container'>
+        <h3>Portfolio</h3>
+        <p>{`USER ID: ${currentUserID}`}</p>
+        <p>{`CASH: $${userDataObject.netWorth}`}</p>
+        <p>{`PORTFOLIO VALUE: $${combinedStockCurrentValue}`}</p>
+        <p>{`CASH + PORTFOLIO VALUE: $${userDataObject.netWorth + combinedStockCurrentValue}`}</p>
+        {
+          portfolioQuotes.length
+            ? generatePortfolioQuoteStockCards(portfolioQuotes)
+            : null
+        }
+        <button
+          className="ss-button-update-portfolio"
+          onClick={() => {
+            fetchPortfolioQuotes(userDataObject.portfolio)
+          }}>
+          UPDATE USER PORFOLIO
+        </button>
+      </section>
+    </div>
+  );
 }
 
 Portfolio.propTypes = {

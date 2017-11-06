@@ -141,6 +141,10 @@ class SingleStock extends Component {
     });
   }
 
+  handleUpdatePorfolioButtonClick = () => {
+    
+  }
+
   render(){
     return (
       <div className='single-stock-container'>

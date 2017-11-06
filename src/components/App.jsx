@@ -1,8 +1,9 @@
 import "babel-polyfill";
 import React, { Component } from 'react';
+import { Redirect } from 'react-router'
 
 export default class App extends Component {
   render() {
-    return (<div className='app'>APP</div>);
+    return (<Redirect to='/login'/>);
   }
 }

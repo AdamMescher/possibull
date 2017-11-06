@@ -1,5 +1,6 @@
 import "babel-polyfill";
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import fire from '../utils/fire';
 import PropTypes from 'prop-types';
 
@@ -35,7 +36,7 @@ export default class Login extends Component {
       if ( user ) {
         this.props.setCurrentUserID(user.uid);
         this.props.fetchUserData(user.uid);
-        this.props.history.push(`/portfolio`);
+        this.props.history.push('/portfolio');
       }
     });
   }
@@ -62,7 +63,7 @@ export default class Login extends Component {
         });
         this.props.setCurrentUserID( user.uid );
         this.props.fetchUserData( user.uid );
-        this.props.history.push( `/portfolio/` );
+        this.props.history.push( `/portfolio` );
       }
     });
   }

@@ -36,12 +36,6 @@ export default class Search extends Component {
     }
   }
 
-  // handleKeyPress(event) {
-  //   if ( event.key === 'Enter' ){
-  //
-  //   }
-  // }
-
   render() {
     return (
       <div className='search-container'>
@@ -55,7 +49,9 @@ export default class Search extends Component {
         <input
           type='image'
           className='search-button'
-          onClick={ this.handleSearchButtonClick(this.state.search) }
+          onClick={ () => {
+            this.handleSearchButtonClick(this.state.search)
+          } }
           src={require('../assets/icons/icon-search-electricblue.svg')}
           alt={`Icon of magnifying glass`}/>
       </div>
