@@ -7,6 +7,7 @@ describe( 'LOGIN REDUCER', () => {
       type: 'CURRENT_USER_ID',
       userID: mockUserID
     };
+
     const expectation = action.userID;
 
     expect( reducers.currentUserID(mockUserID, action ) ).toEqual(expectation);
