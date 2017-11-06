@@ -6,3 +6,21 @@ export const userOwnedStocks = ( state = [], action ) => {
       return state;
   }
 }
+
+export const userDataObject = ( state = {}, action ) => {
+  switch ( action.type ) {
+    case 'SET_USER_DATA':
+      return action.userDataObject;
+    default:
+      return state;
+  }
+}
+
+export const portfolioQuotes = ( state = [], action ) => {
+  switch ( action.type ) {
+    case 'SET_PORTFOLIO_QUOTES':
+      return action.quotes;
+    default:
+      return state;
+  }
+}

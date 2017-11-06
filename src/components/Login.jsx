@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import fire from '../utils/fire';
-import { fetchUserNetWorth } from '../utils/fetchHelpers';
 
 export default class Login extends Component {
   constructor(props){
@@ -31,11 +30,11 @@ export default class Login extends Component {
         console.log('MESSAGE: ', error.message);
       });
 
-    fire.auth().onAuthStateChanged( (user) => {
+    fire.auth().onAuthStateChanged( user => {
       if (user) {
-        this.props.setCurrentUserID(user.uid);
-        this.props.fetchUserData(user.uid);
-        this.props.history.push(`/portfolio/${this.props.currentUserID}`)
+        this.props.setCurrentUserID( user.uid ); 
+        this.props.fetchUserData(user.uid);       
+        this.props.history.push( `/portfolio` );
       }
     });
   }
@@ -58,7 +57,7 @@ export default class Login extends Component {
           netWorth: 1000000
         });
         this.props.setCurrentUserID(user.uid);
-        this.props.fetchUserData(user.uid);
+        this.props.fetchUserData(user.uid);    
         this.props.history.push(`/portfolio/`);
       }
     });

@@ -12,16 +12,17 @@ class SingleStock extends Component {
   }
 
   componentDidMount(){
-    if(!this.props.stockDataObjectToDisplay){
-      this.props.fetchStockQuote( this.props.stockSymbolToDisplay )
+    if (!this.props.stockSymbolToDisplay){
+      console.log('no symbol');
     }
+    this.props.fetchStockQuote( this.props.stockSymbolToDisplay )
   }
 
   generateStockPurchaseData = stock => ({
     symbol: stock.symbol,
-    price: stock.price,
+    price: stock.latestPrice,
     numberOfShares: this.state.numberOfShares,
-    cost: this.state.numberOfShares * stock.price.toFixed(2)
+    cost: (this.state.numberOfShares * stock.latestPrice).toFixed(2)
   });
 
   generateUpdatedUserObject = (userID, portfolio, netWorth) => {
@@ -71,7 +72,7 @@ class SingleStock extends Component {
             numberOfShares: parseInt(transactionData.numberOfShares)
           }
         },
-        netWorth: (this.props.userDataObject.netWorth - transactionData.cost.toFixed(2))
+        netWorth: (this.props.userDataObject.netWorth - transactionData.cost).toFixed(2)
       })
 
     } else {
@@ -196,8 +197,10 @@ class SingleStock extends Component {
       <div className='single-stock-container'>
         <Header 
           history={this.props.history}
-          setSearchTerm={this.props.setSearchTerm.bind(this)}
-          setStockDataObjectToDisplay={this.props.setStockDataObjectToDisplay.bind(this)} 
+          userID={this.props.currentUserID}
+          fetchUserData={this.props.fetchUserData}
+          setSearchTerm={this.props.setSearchTerm}
+          setStockDataObjectToDisplay={this.props.setStockDataObjectToDisplay} 
           fetchStockQuote={this.props.fetchStockQuote}
           /> 
         <section className='ss-main'>

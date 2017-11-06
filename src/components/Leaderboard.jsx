@@ -3,6 +3,9 @@ import Header from './Header';
 
 const Leaderboard = ({
   history,
+  currentUserID,
+  fetchUserData,
+  fetchStockQuote,
   setSearchTerm,
   setStockDataObjectToDisplay
 }) => {
@@ -10,6 +13,9 @@ const Leaderboard = ({
     <div className='leaderboard-container'>
       <Header 
         history={history}
+        userID={currentUserID}
+        fetchUserData={fetchUserData.bind(this)}
+        fetchStockQuote={fetchStockQuote.bind(this)}
         setSearchTerm={setSearchTerm.bind(this)} 
         setStockDataObjectToDisplay={setStockDataObjectToDisplay.bind(this)} />
       <section>

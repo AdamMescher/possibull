@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Login from '../components/Login';
 import { currentUserID, userOwnedStocks } from '../actions/LoginContainerActions';
-import { fetchUserData } from '../utils/fetchHelpers';
+import { fetchUserDataHelper } from '../utils/fetchHelpers';
 
 
 const mapStateToProps = store => ({
@@ -14,8 +14,8 @@ const mapStateToProps = store => ({
 
 const mapDispatchToProps = dispatch => ({
   setCurrentUserID: userID => dispatch( currentUserID( userID ) ),
-  fetchUserData: userID => dispatch( fetchUserData( userID ) ),
-  setUserOwnedStocks: stocks => dispatch( userOwnedStocks( stocks ) )
+  setUserOwnedStocks: stocks => dispatch( userOwnedStocks( stocks ) ),
+  fetchUserData: userID => dispatch( fetchUserDataHelper( userID ) )
 });
 
 export default connect(
