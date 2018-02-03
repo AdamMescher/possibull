@@ -4,17 +4,10 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import rootReducer from './reducers/rootReducer';
+import rootReducer from './Reducers';
 import './index.css';
-import registerServiceWorker from './registerServiceWorker';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import App from '../src/components/App';
-import LoginContainer from './containers/LoginContainer';
-import PortfolioContainer from './containers/PortfolioContainer';
-import LeaderboardContainer from './containers/LeaderboardContainer';
-import SingleStockContainer from './containers/SingleStockContainer';
-import SearchResultsContainer from './containers/SearchResultsContainer';
-
+import { BrowserRouter } from 'react-router-dom';
+import App from './App';
 
 const devTools =
   window.__REDUX_DEVTOOLS_EXTENSION__ &&
@@ -28,28 +21,8 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
-      <div className='app'>
-        <Route
-          exact path='/'
-          component={App}/>
-        <Route
-          path='/login'
-          component=  {LoginContainer}/>
-        <Route
-          path='/portfolio'
-          component=  {PortfolioContainer}/>
-        <Route
-          path='/leaderboard'
-          component={LeaderboardContainer}/>
-        <Route
-          path='/search'
-          component={SearchResultsContainer}/>
-        <Route
-          path='/stock'
-          component=  {SingleStockContainer}/>
-      </div>
-    </Router>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>, document.getElementById('root')
 );
-registerServiceWorker();
