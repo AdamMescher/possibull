@@ -1,11 +1,12 @@
 import "babel-polyfill";
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router';
+import { Redirect, Route, Switch } from 'react-router';
 import Leaderboard from '../Leaderboard';
 import Login from '../Login/';
 import Portfolio from '../Portfolio';
-import Search from '../Search';
+import SearchResults from '../SearchResults';
 import SingleStock from '../SingleStock';
+import NotFound from '../NotFound';
 
 export default class App extends Component {
   render() {
@@ -14,25 +15,28 @@ export default class App extends Component {
         <main>
           <Switch>
             <Route 
-              exact patch='/' 
+              exact path='/' 
               component={Login} 
               key='Login' />
             <Route 
-              exact patch='/portfolio' 
+              exact path='/portfolio' 
               component={Portfolio} 
               key='Portfolio' />
             <Route 
-              exact patch='/search' 
-              component={Search} 
+              exact path='/search' 
+              component={SearchResults} 
               key='Search' />
             <Route 
-              exact patch='/leaderboard' 
+              exact path='/leaderboard' 
               component={Leaderboard} 
               key='Leaderboard' />
             <Route 
-              exact patch='/stock/:symbol' 
+              exact path='/stock/:symbol' 
               component={SingleStock} 
               key='StockInfo' />
+            <Route 
+              path='*' 
+              component={NotFound} />
           </Switch>
         </main>
       </div>

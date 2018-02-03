@@ -1,12 +1,12 @@
 import "babel-polyfill";
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import rootReducer from './Reducers';
 import './index.css';
-import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 
 const devTools =
