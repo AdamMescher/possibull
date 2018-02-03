@@ -27,6 +27,8 @@ src/**/*.css
 #firebase
 fire.js
 firebaseDatabaseSecret.js
+firebaseAdmin.js
+possibull-5f513-firebase-adminsdk-d41dt-158574282d.json
 
 #quandl api key
 quandlApiKey.js

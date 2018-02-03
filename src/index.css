@@ -6,167 +6,6 @@
   height: 100vh;
   width: 100%; }
 
-.login-container {
-  background-color: #001739; }
-
-.uppercase {
-  text-transform: uppercase; }
-
-.login-container h1 {
-  text-align: center;
-  margin: 0;
-  font-size: 150px;
-  color: white; }
-
-.login-form {
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; }
-
-.login-container input::placeholder,
-.login-container button {
-  font-size: 16px;
-  line-height: 70px; }
-
-.login-form input {
-  border: lightslategray 2px solid; }
-
-.login-form input,
-.login-form button {
-  font-size: 32px;
-  border-radius: 5px; }
-
-.input-name,
-.input-email,
-.input-password,
-.input-verify-password,
-.login-form button {
-  margin-top: 25px;
-  padding-left: 10px;
-  height: 50px;
-  width: 400px;
-  border: none; }
-
-.input-signup-button,
-.input-login-button {
-  margin-top: 25px;
-  height: 50px;
-  width: 400px;
-  color: white;
-  background-color: #0A81D1; }
-
-.input-signup-button:hover,
-.input-login-button:hover {
-  background-color: #087E8B; }
-
-.single-stock-container {
-  height: 100vh;
-  width: 100%;
-  background-color: #E8F3FA; }
-
-.ss-main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 90%;
-  width: 100%;
-  margin-top: 50px;
-  overflow-y: hidden; }
-
-.ss-button-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center; }
-
-.ss-button-container button {
-  background-color: white;
-  color: black;
-  width: 50%;
-  height: 50px;
-  margin-top: 15px; }
-
-.ss-button-buy {
-  border: 2px green solid; }
-
-.ss-button-buy:hover {
-  background-color: green;
-  color: white; }
-
-.ss-num-shares-input {
-  height: 50px;
-  width: 30%;
-  margin-top: 15px;
-  text-align: center;
-  font-size: 180px;
-  padding: 100px 0 100px 0;
-  border: none; }
-
-.ss-num-shares-input::placeholder {
-  font-size: 40px; }
-
-.ss-button-sell {
-  border: 2px red solid; }
-
-.ss-button-sell:hover {
-  background-color: red;
-  color: white; }
-
-.ss-stock-info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 30px; }
-
-.ss-stock-title {
-  font-size: 70px; }
-
-.ss-stock-company-name {
-  font-size: 24px; }
-
-.ss-stock-price {
-  font-size: 60px;
-  color: green; }
-
-.red {
-  color: red; }
-
-.green {
-  color: green; }
-
-.ss-button-portfolio-update {
-  color: black;
-  height: 200px;
-  width: 150px; }
-
-.search-container {
-  display: flex;
-  align-items: center; }
-
-.search-input {
-  width: 300px;
-  height: 40px;
-  padding: 0 10px 0 10px;
-  font-size: 20px;
-  border: 1px #0A81D1 solid;
-  border-radius: 4px;
-  z-index: 10; }
-
-.search-button {
-  background-color: teal;
-  height: 20px;
-  width: 20px;
-  border: none;
-  margin: 0 35px 0 -30px;
-  background: url("http://localhost:3000/src/assets/icons/icon-search-electricblue.svg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 10px 10px;
-  z-index: 11; }
-
 .header-container {
   display: flex;
   justify-content: space-between;
@@ -224,6 +63,62 @@
   color: #70C1B3;
   cursor: pointer; }
 
+.login-container {
+  background-color: #001739; }
+
+.uppercase {
+  text-transform: uppercase; }
+
+.login-container h1 {
+  text-align: center;
+  margin: 0;
+  font-size: 150px;
+  color: white; }
+
+.login-form {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+
+.login-container input::placeholder,
+.login-container button {
+  font-size: 16px;
+  line-height: 70px; }
+
+.login-form input {
+  border: lightslategray 2px solid; }
+
+.login-form input,
+.login-form button {
+  font-size: 32px;
+  border-radius: 5px; }
+
+.input-name,
+.input-email,
+.input-password,
+.input-verify-password,
+.login-form button {
+  margin-top: 25px;
+  padding-left: 10px;
+  height: 50px;
+  width: 400px;
+  border: none; }
+
+.input-signup-button,
+.input-login-button {
+  margin-top: 25px;
+  height: 50px;
+  width: 400px;
+  color: white;
+  background-color: #0A81D1; }
+
+.input-signup-button:hover,
+.input-login-button:hover {
+  background-color: #087E8B; }
+
 .portfolio-container {
   height: 100vh;
   width: 100%;
@@ -271,6 +166,50 @@
 .portfolio-button-update:hover {
   color: black;
   background-color: white; }
+
+.search-container {
+  display: flex;
+  align-items: center; }
+
+.search-input {
+  width: 300px;
+  height: 40px;
+  padding: 0 10px 0 10px;
+  font-size: 20px;
+  border: 1px #0A81D1 solid;
+  border-radius: 4px;
+  z-index: 10; }
+
+.search-button {
+  background-color: teal;
+  height: 20px;
+  width: 20px;
+  border: none;
+  margin: 0 35px 0 -30px;
+  background: url("http://localhost:3000/src/assets/icons/icon-search-electricblue.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 10px 10px;
+  z-index: 11; }
+
+.searchResults-container {
+  height: 100vh;
+  width: 100%; }
+
+.searchResults-card-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; }
+
+.searchResults-container-none-found {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.no-matching-results {
+  font-size: 200px; }
 
 .stockCard-container {
   display: flex;
@@ -320,25 +259,6 @@
 
 .stock-card p {
   margin-top: 5px; }
-
-.searchResults-container {
-  height: 100vh;
-  width: 100%; }
-
-.searchResults-card-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap; }
-
-.searchResults-container-none-found {
-  height: 100vh;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center; }
-
-.no-matching-results {
-  font-size: 200px; }
 
 * {
   margin: 0;

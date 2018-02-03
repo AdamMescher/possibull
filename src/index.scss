@@ -1,12 +1,12 @@
-@import './scss/variables.scss';
-@import './scss/App.scss';
-@import './scss/Login.scss';
-@import './scss/SingleStock.scss';
-@import './scss/Search.scss';
-@import './scss/Header.scss';
-@import './scss/Portfolio.scss';
-@import './scss/StockCard.scss';
-@import './scss/SearchResults.scss';
+@import './variables.scss';
+@import './App/styles.scss';
+@import './Header/styles.scss';
+@import './Leaderboard/styles.scss';
+@import './Login/styles.scss';
+@import './Portfolio/styles.scss';
+@import './Search/styles.scss';
+@import './SearchResults/styles.scss';
+@import './StockCard/styles.scss';
 
 * {
   margin: 0;

@@ -1,0 +1,98 @@
+@import '../variables.scss';
+
+.single-stock-container {
+  height: 100vh;
+  width: 100%;
+  background-color: #E8F3FA;
+}
+
+.ss-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+  width: 100%;
+  margin-top: 50px;
+  overflow-y: hidden;
+}
+
+.ss-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ss-button-container button {
+  background-color: white;
+  color: black;
+  width: 50% ;
+  height: 50px;
+  margin-top: 15px;
+}
+
+.ss-button-buy {
+  border: 2px green solid;
+}
+
+.ss-button-buy:hover {
+  background-color: green;
+  color: white;
+}
+
+.ss-num-shares-input {
+  height: 50px;
+  width: 30%;
+  margin-top: 15px;
+  text-align: center;
+  font-size: 180px;
+  padding: 100px 0 100px 0;
+  border: none;
+}
+
+.ss-num-shares-input::placeholder {
+  font-size: 40px;
+}
+
+.ss-button-sell {
+  border: 2px red solid;
+}
+
+.ss-button-sell:hover {
+  background-color: red;
+  color: white;
+}
+
+.ss-stock-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.ss-stock-title {
+  font-size: 70px;
+}
+
+.ss-stock-company-name {
+  font-size: 24px;
+}
+
+.ss-stock-price {
+  font-size: 60px;
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+.green {
+  color: green;
+}
+
+.ss-button-portfolio-update {
+  color: black;
+  height: 200px;
+  width: 150px;
+}

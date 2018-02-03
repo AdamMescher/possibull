@@ -1,0 +1,55 @@
+.portfolio-container {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #E8F3FA;
+  }
+  
+  .portfolio-main-container {
+    height: 85%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: -100px;
+  }
+  
+  .portfolio-numbers-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .stock-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 70%;
+  }
+  
+  .pmc-cash,
+  .pmc-portfolio-value {
+    font-size: 35px;
+    color: #323232;
+  }
+  
+  .pmc-total-value {
+    font-size: 100px;
+    color: green;
+  }
+  
+  .portfolio-button-update {
+    font-size: 16px;
+    margin-top: 50px;
+    width: 250px;
+    height: 75px;
+    color: white;
+    background-color: black;
+    border: none;
+  }
+  
+  .portfolio-button-update:hover {
+    color: black;
+    background-color: white;
+  }
